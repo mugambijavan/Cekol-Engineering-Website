@@ -1,82 +1,87 @@
 'use client';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { FiCheckCircle, FiClock, FiUsers } from 'react-icons/fi';
 import { SERVICES, PROJECTS } from './_utils/constants';
 import ProjectCard from './components/ProjectsCard';
 
-const heroColors = ['bg-blue-900', 'bg-emerald-800', 'bg-amber-700', 'bg-slate-800', 'bg-rose-900'];
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+    const slides = [
+    { bg: 'bg-blue-900', text: 'Engineering Excellence Since 2011' },
+    { bg: 'bg-emerald-800', text: '250+ Successful Projects Delivered' },
+    { bg: 'bg-amber-700', text: '98% Client Satisfaction Rate' },
+    { bg: 'bg-slate-800', text: 'Across 12 African Nations' },
+    { bg: 'bg-rose-900', text: 'ISO 9001:2015 Certified Quality' },
+  ];
   const projectsRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
+  const [activeSlide, setActiveSlide] = useState(0);
 
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroColors.length);
+      setActiveSlide(prev => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
 
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative h-screen">
         <AnimatePresence mode='wait'>
-          {heroColors.map((color, index) => (
-            currentSlide === index && (
+          {slides.map((slide, index) => (
+            activeSlide === index && (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 1.1 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                className={`absolute inset-0 ${color} flex items-center justify-center`}
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className={`absolute inset-0 ${slide.bg}`}
               >
-                <div className="container text-center text-white px-4 mx-auto">
-                  <motion.h1
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-bold mb-6 font-serif"
-                  >
-                    Engineering Excellence
-                  </motion.h1>
-                  <motion.p
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-xl md:text-3xl mb-12 max-w-2xl mx-auto"
-                  >
-                    Transforming Africa&apos;s Infrastructure Landscape
-                  </motion.p>
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.6, type: 'spring' }}
-                  >
-                    <button className="bg-white/10 backdrop-blur-lg text-white px-10 py-4 rounded-full hover:bg-white/20 transition-all border-2 border-white/20 font-medium text-lg">
-                      Explore Our Projects
-                    </button>
-                  </motion.div>
-                </div>
+                <motion.div 
+                  style={{ rotate, scale: 1 }}
+                  className="absolute inset-0 bg-black/20 backdrop-blur-lg"
+                >
+                  <div className="container h-full flex items-center justify-center text-center">
+                    <motion.div
+                      initial={{ y: 50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5 }}
+                      className="text-white"
+                    >
+                      <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                        {slide.text}
+                      </h1>
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ delay: 1, duration: 1.5 }}
+                        className="h-1 bg-white origin-left"
+                      />
+                    </motion.div>
+                  </div>
+                </motion.div>
               </motion.div>
             )
           ))}
         </AnimatePresence>
 
-        {/* Carousel Dots */}
+        {/* Slide Navigation */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
-          {heroColors.map((_, index) => (
-            <button
+          {slides.map((_, index) => (
+            <motion.button
               key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white scale-125' : 'bg-white/30 scale-100'
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setActiveSlide(index)}
+              className={`w-3 h-3 rounded-full ${
+                activeSlide === index ? 'bg-white' : 'bg-white/50'
               }`}
             />
           ))}

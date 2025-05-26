@@ -1,13 +1,25 @@
     'use client';
     import Link from 'next/link';
-    import { useState } from 'react';
+    import { useState, useEffect } from 'react';
     import { motion, AnimatePresence } from 'framer-motion';
     import { usePathname } from 'next/navigation';
+    import { FiMenu, FiX } from 'react-icons/fi';
 
     export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const navItems = ['Home', 'About', 'Services', 'Projects', 'Contact'];
+
+    useEffect(() => {
+        const handleScroll = () => {
+        const offset = window.scrollY;
+        setIsScrolled(offset > 100);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -63,13 +75,18 @@
         initial="hidden"
         animate="visible"
         variants={navVariants}
-        className="bg-white shadow-xl fixed w-full z-50"
+        className={`fixed w-full z-50 transition-all duration-300 ${
+            isScrolled 
+            ? 'bg-white shadow-xl' 
+            : 'md:bg-transparent md:shadow-none'
+        }`}
         >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="transition-colors duration-300"
             >
                 <Link href="/" className="text-2xl font-bold text-blue-900 flex items-center">
                 <img 
@@ -100,8 +117,10 @@
                     <Link 
                         href={href}
                         className={`${
-                        isActive ? 'bg-blue-50 text-blue-900' : 'text-gray-700'
-                        } text-lg font-medium px-4 py-2 rounded-lg transition-colors`}
+                        isActive 
+                            ? 'bg-blue-50 text-blue-900' 
+                            : `text-${isScrolled ? 'gray-700' : 'white'}`
+                        } text-lg font-medium px-4 py-2 rounded-lg transition-colors duration-300`}
                     >
                         {item}
                         {isActive && (
@@ -118,7 +137,11 @@
                 <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-blue-900 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-shadow ml-4"
+                className={`${
+                    isScrolled 
+                    ? 'bg-blue-900 text-white' 
+                    : 'md:bg-white md:text-blue-900'
+                } px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ml-4`}
                 >
                 Get Quote
                 </motion.button>
@@ -128,18 +151,13 @@
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden p-2"
-                whileTap={{ rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
             >
-                <motion.div
-                animate={isOpen ? "open" : "closed"}
-                variants={{
-                    open: { rotate: 45 },
-                    closed: { rotate: 0 }
-                }}
-                className="w-8 h-8 text-blue-900"
-                >
-                ☰
-                </motion.div>
+                {isOpen ? (
+                <FiX className="w-8 h-8 text-blue-900" />
+                ) : (
+                <FiMenu className="w-8 h-8 text-blue-900" />
+                )}
             </motion.button>
             </div>
 

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/javoh/GitHub/cekol/app/components/ServiceCard.tsx"],"sourcesContent":["'use client';\n\nexport default function ServiceCard({ title, description }: {\n  title: string;\n  description: string;\n}) {\n  return (\n    <div className=\"bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow\">\n      <h3 className=\"text-xl font-semibold mb-4\">{title}</h3>\n      <p className=\"text-gray-600\">{description}</p>\n    </div>\n  );\n}"],"names":[],"mappings":";;;;AAAA;;AAEe,SAAS,YAAY,EAAE,KAAK,EAAE,WAAW,EAGvD;IACC,qBACE,6LAAC;QAAI,WAAU;;0BACb,6LAAC;gBAAG,WAAU;0BAA8B;;;;;;0BAC5C,6LAAC;gBAAE,WAAU;0BAAiB;;;;;;;;;;;;AAGpC;KAVwB","debugId":null}}]
+}

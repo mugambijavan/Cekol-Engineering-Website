@@ -1,0 +1,9 @@
+{
+  "[project]/app/gallery/GalleryLightbox.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/app/gallery/GalleryLightbox.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/app_gallery_GalleryLightbox_tsx_3be5de22._.js",
+      "static/chunks/app_gallery_GalleryLightbox_tsx_62da6bb0._.js"
+    ]
+  }
+}

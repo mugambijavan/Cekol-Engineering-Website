@@ -1,38 +1,38 @@
 'use client';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
-import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp } from 'react-icons/fi';
+import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp, FiDownload, FiX } from 'react-icons/fi';
 
 const AboutPage = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const rotateX = useTransform(scrollYProgress, [0, 1], [0, -5]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [0, -3]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0]);
 
-  const heroHeight = 'h-[90vh]';
+  const heroHeight = 'h-[80vh]';
 
-  // Updated slides with more professional content from the document
   const slides = [
     { 
       text: 'Engineering the Impossible, Making it Possible',
       stats: ['112+ Skilled Professionals', '250+ Completed Projects', '12 African Countries'],
-      bgImage: 'image.png' // Construction site image
+      bgImage: 'image.png'
     },
     { 
       text: 'NCA Category NCAS & NCAA Certified',
       stats: ['KES 727M Annual Turnover', 'ISO 9001:2015 Certified', 'AGPO Youth Registered'],
-      bgImage: 'image2.png' // Team working image
+      bgImage: 'image2.png'
     },
     { 
       text: 'Sustainable Infrastructure Solutions',
       stats: ['18KM Electric Fence Project', 'KES 349M Market Complex', 'Environmental Policy Compliant'],
-      bgImage: 'image3.png' // Completed project image
+      bgImage: 'image3.png'
     },
   ];
 
-  // Enhanced certifications from the document
   const certifications = [
     { 
       name: 'NCA Category NCAS', 
@@ -78,7 +78,6 @@ const AboutPage = () => {
     },
   ];
 
-  // Key projects from the document
   const keyProjects = [
     {
       title: "Uhuru Business Park Market Complex",
@@ -106,13 +105,78 @@ const AboutPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide(prev => (prev + 1) % slides.length);
-    }, 6000);
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (isProfileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isProfileOpen]);
+
   return (
     <div ref={ref} className="overflow-hidden bg-white">
-      {/* Enhanced Hero Section with Dynamic Backgrounds */}
+      {/* Company Profile Modal */}
+      <AnimatePresence>
+        {isProfileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setIsProfileOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center p-4 border-b">
+                <h3 className="text-xl font-bold text-gray-900">Company Profile</h3>
+                <button 
+                  onClick={() => setIsProfileOpen(false)}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <FiX className="w-6 h-6 text-gray-500" />
+                </button>
+              </div>
+              
+              <div className="flex-1 overflow-auto">
+                {/* PDF Viewer */}
+                <div className="w-full h-[70vh]">
+                  <iframe 
+                    src="/doc/company-profile.pdf" 
+                    className="w-full h-full"
+                    frameBorder="0"
+                  />
+                </div>
+              </div>
+              
+              <div className="p-4 border-t flex justify-end">
+                <a 
+                  href="/doc/company-profile.pdf" 
+                  download="Cekol-Engineering-Profile.pdf"
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors"
+                >
+                  <FiDownload className="w-5 h-5" />
+                  Download PDF
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hero Section */}
       <section className={`relative ${heroHeight} overflow-hidden`}>
         <AnimatePresence mode='wait'>
           {slides.map((slide, index) => (
@@ -123,14 +187,14 @@ const AboutPage = () => {
                 style={{
                   backgroundImage: `url(/images/${slide.bgImage})`,
                   // eslint-disable-next-line react-hooks/rules-of-hooks
-                  scale: useTransform(scrollYProgress, [0, 1], [1, 1.2]),
+                  scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]),
                   rotateX,
                   opacity
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 1.5 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30">
                   <div className="container h-full flex flex-col items-center justify-center text-center px-4">
@@ -138,26 +202,31 @@ const AboutPage = () => {
                       initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 0.8 }}
+                      transition={{ duration: 1.2, delay: 0.3 }}
                       className="text-white max-w-4xl mx-auto"
                     >
                       <motion.h1 
-                        className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+                        className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
                         initial={{ letterSpacing: '0em' }}
                         animate={{ letterSpacing: '0.02em' }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
                       >
                         {slide.text}
                       </motion.h1>
                       
-                      <motion.div className="flex flex-wrap justify-center gap-4 mt-8">
+                      <motion.div 
+                        className="flex flex-wrap justify-center gap-4 mt-8"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                      >
                         {slide.stats.map((stat, idx) => (
                           <motion.div
                             key={idx}
                             className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            transition={{ delay: idx * 0.1, type: 'spring', stiffness: 100 }}
+                            transition={{ delay: idx * 0.15, type: 'spring', stiffness: 100, damping: 10 }}
                             whileHover={{ scale: 1.05 }}
                           >
                             <span className="font-medium">{stat}</span>
@@ -175,18 +244,20 @@ const AboutPage = () => {
         {/* Scroll indicator */}
         <motion.div 
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
         >
-          <div className="text-white text-sm mb-2">Scroll to explore</div>
-          <div className="w-6 h-10 border-2 border-white rounded-full mx-auto relative">
-            <motion.div
-              className="w-1 h-2 bg-white rounded-full absolute top-2 left-1/2 transform -translate-x-1/2"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center"
+          >
+            <div className="text-white text-sm mb-2">Scroll to explore</div>
+            <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
+              <div className="w-1 h-2 bg-white rounded-full" />
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -195,15 +266,17 @@ const AboutPage = () => {
         <div className="container max-w-7xl mx-auto px-6">
           <motion.div
             className="flex flex-col md:flex-row gap-12 items-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             <div className="md:w-1/2">
               <motion.h2 
                 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
                 initial={{ x: -50 }}
                 whileInView={{ x: 0 }}
+                transition={{ delay: 0.1 }}
               >
                 About <span className="text-blue-700">Cekol Engineering</span>
               </motion.h2>
@@ -219,18 +292,23 @@ const AboutPage = () => {
                 className="text-lg text-gray-600 mb-8 leading-relaxed"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.3 }}
               >
                 We specialize in creating sustainable infrastructure that enhances communities while maintaining the highest standards of quality assurance, service delivery, and safety compliance.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.4 }}
               >
-                <button className="px-8 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors">
-                  Download Company Profile
-                </button>
+                <motion.button 
+                  className="px-8 py-3.5 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsProfileOpen(true)}
+                >
+                  View Company Profile
+                </motion.button>
               </motion.div>
             </div>
             <div className="md:w-1/2">
@@ -238,12 +316,15 @@ const AboutPage = () => {
                 className="bg-gray-100 rounded-2xl overflow-hidden shadow-xl"
                 initial={{ scale: 0.9, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <img 
-                  src="/images/image4.png" 
-                  alt="Cekol Engineering Team" 
+                <Image
+                  src="/images/image4.png"
+                  alt="Cekol Engineering Team"
+                  width={800}
+                  height={500}
                   className="w-full h-auto object-cover"
+                  priority
                 />
               </motion.div>
             </div>
@@ -259,6 +340,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
               Our Corporate Journey
             </motion.h2>
@@ -271,10 +353,8 @@ const AboutPage = () => {
           </div>
 
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-1/2 h-full w-1 bg-blue-700/20 transform -translate-x-1/2 hidden md:block"></div>
             
-            {/* Timeline items */}
             <div className="space-y-16 md:space-y-0">
               {[
                 { 
@@ -314,13 +394,12 @@ const AboutPage = () => {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.15 }}
+                  viewport={{ once: true }}
                 >
-                  {/* Year marker */}
                   <div className="flex-shrink-0 w-24 h-24 rounded-full bg-blue-700 text-white flex items-center justify-center text-2xl font-bold z-10 shadow-lg">
                     {item.year}
                   </div>
                   
-                  {/* Content card */}
                   <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} p-8 bg-white rounded-2xl shadow-lg`}>
                     <div className="flex items-center md:justify-end gap-4 mb-4">
                       {item.icon}
@@ -343,6 +422,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl font-bold mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.7 }}
             >
               Financial Performance
             </motion.h2>
@@ -392,6 +472,7 @@ const AboutPage = () => {
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ delay: index * 0.2 }}
                 whileHover={{ y: -5 }}
+                viewport={{ once: true }}
               >
                 <div className="text-4xl mb-6 text-emerald-400">{item.icon}</div>
                 <div className="text-3xl font-bold mb-2">{item.value}</div>
@@ -402,7 +483,6 @@ const AboutPage = () => {
             ))}
           </div>
 
-          {/* Key Projects */}
           <motion.div
             className="mt-20"
             initial={{ opacity: 0 }}
@@ -439,6 +519,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.7 }}
             >
               Operational Excellence
             </motion.h2>
@@ -479,6 +560,7 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
+                viewport={{ once: true }}
               >
                 <div className="text-blue-700 mb-4">{item.icon}</div>
                 <div className="text-xl font-bold text-gray-900 mb-4">{item.title}</div>
@@ -494,14 +576,15 @@ const AboutPage = () => {
         <div className="container max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Accreditations</h2>
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '120px' }}
-              className="h-1 bg-blue-700 mx-auto"
+              className="h-1 bg-blue-700 mx-auto mb-6"
             />
             <p className="max-w-2xl mx-auto mt-6 text-gray-600">
               Certified compliance with all regulatory requirements and industry standards
@@ -513,10 +596,11 @@ const AboutPage = () => {
               <motion.div
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100"
-                initial={{ scale: 0.95, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ delay: index * 0.1, type: 'spring' }}
-                whileHover={{ y: -5 }}
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                whileInView={{ scale: 1, opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, type: 'spring', stiffness: 120 }}
+                whileHover={{ y: -8 }}
+                viewport={{ once: true }}
               >
                 <div className="flex items-start mb-4 gap-4">
                   <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -547,6 +631,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.7 }}
             >
               Leadership & Governance
             </motion.h2>
@@ -562,6 +647,7 @@ const AboutPage = () => {
               className="bg-slate-50 p-8 rounded-2xl shadow-sm"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Management Structure</h3>
               <div className="space-y-6">
@@ -595,6 +681,7 @@ const AboutPage = () => {
               className="bg-slate-50 p-8 rounded-2xl shadow-sm"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Values</h3>
               <div className="space-y-6">
@@ -634,6 +721,7 @@ const AboutPage = () => {
             className="text-3xl md:text-4xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
             Partner With Kenya&apos;s Leading Engineering Firm
           </motion.h2>
@@ -651,12 +739,20 @@ const AboutPage = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <button className="px-8 py-3 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+            <motion.button 
+              className="px-8 py-3.5 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Request a Quote
-            </button>
-            <button className="px-8 py-3 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-colors">
+            </motion.button>
+            <motion.button 
+              className="px-8 py-3.5 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
+              whileTap={{ scale: 0.95 }}
+            >
               Contact Our Team
-            </button>
+            </motion.button>
           </motion.div>
         </div>
       </section>

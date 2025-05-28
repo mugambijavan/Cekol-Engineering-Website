@@ -1,5 +1,6 @@
     'use client';
     import Link from 'next/link';
+    import Image from 'next/image';
     import { useState, useEffect } from 'react';
     import { motion, AnimatePresence } from 'framer-motion';
     import { usePathname } from 'next/navigation';
@@ -88,16 +89,17 @@
                 whileTap={{ scale: 0.95 }}
                 className="transition-colors duration-300"
             >
-                <Link href="/" className="text-2xl font-bold text-blue-900 flex items-center">
-                <img 
-                    src="/logo.png"
+                <Image 
+                    src="/images/logo.png"
                     alt="CEKOL ENGINEERING"
+                    width={48}
+                    height={48}
                     className="h-12 w-12 mr-2"
+                    priority
                 />
                 <span className="bg-gradient-to-r from-blue-900 to-blue-600 bg-clip-text text-transparent">
                     CEKOL ENGINEERING
                 </span>
-                </Link>
             </motion.div>
 
             {/* Desktop Menu */}

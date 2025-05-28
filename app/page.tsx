@@ -6,20 +6,19 @@ import { FiCheckCircle, FiClock, FiUsers } from 'react-icons/fi';
 import { SERVICES, PROJECTS } from './_utils/constants';
 import ProjectCard from './components/ProjectsCard';
 
-
 export default function Home() {
-    const slides = [
-    { bg: 'bg-blue-900', text: 'Engineering Excellence Since 2011' },
-    { bg: 'bg-emerald-800', text: '250+ Successful Projects Delivered' },
-    { bg: 'bg-amber-700', text: '98% Client Satisfaction Rate' },
-    { bg: 'bg-slate-800', text: 'Across 12 African Nations' },
-    { bg: 'bg-rose-900', text: 'ISO 9001:2015 Certified Quality' },
+  const slides = [
+    { image: '/images/image.png', text: 'Engineering Excellence Since 2011' },
+    { image: '/images/image2.png', text: '250+ Successful Projects Delivered' },
+    { image: '/images/image3.png', text: '98% Client Satisfaction Rate' },
+    { image: '/images/image4.png', text: 'Across 12 African Nations' },
+    { image: '/images/image5.png', text: 'ISO 9001:2015 Certified Quality' },
   ];
+  
   const projectsRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const [activeSlide, setActiveSlide] = useState(0);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +26,6 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-
 
   return (
     <div className="overflow-hidden">
@@ -42,11 +40,23 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className={`absolute inset-0 ${slide.bg}`}
+                className="absolute inset-0"
               >
+                {/* Background image with overlay */}
+                <div 
+                  className="absolute inset-0"
+                  style={{ 
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+                </div>
+                
                 <motion.div 
                   style={{ rotate, scale: 1 }}
-                  className="absolute inset-0 bg-black/20 backdrop-blur-lg"
+                  className="absolute inset-0"
                 >
                   <div className="container h-full flex items-center justify-center text-center">
                     <motion.div

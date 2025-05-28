@@ -848,10 +848,6 @@
     height: calc(var(--spacing) * 96);
   }
 
-  .h-\[40vh\] {
-    height: 40vh;
-  }
-
   .h-\[40vw\] {
     height: 40vw;
   }
@@ -860,20 +856,12 @@
     height: 60vh;
   }
 
-  .h-\[70vh\] {
-    height: 70vh;
-  }
-
   .h-\[80vh\] {
     height: 80vh;
   }
 
   .h-\[500px\] {
     height: 500px;
-  }
-
-  .h-\[800px\] {
-    height: 800px;
   }
 
   .h-full {
@@ -1636,26 +1624,6 @@
     background-image: url("/images/construction-site.jpg");
   }
 
-  .bg-\[url\(\'\/images\/construction\.jpg\'\)\] {
-    background-image: url("/images/construction.jpg");
-  }
-
-  .bg-\[url\(\'\/images\/construction1\.jpg\'\)\] {
-    background-image: url("/images/construction1.jpg");
-  }
-
-  .bg-\[url\(\'\/images\/electric-fence\.jpg\'\)\] {
-    background-image: url("/images/electric-fence.jpg");
-  }
-
-  .bg-\[url\(\'\/images\/project-site\.jpg\'\)\] {
-    background-image: url("/images/project-site.jpg");
-  }
-
-  .bg-\[url\(\'\/images\/uhuru-market\.jpg\'\)\] {
-    background-image: url("/images/uhuru-market.jpg");
-  }
-
   .from-\[\#cd9826\] {
     --tw-gradient-from: #cd9826;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -1691,17 +1659,6 @@
   .from-black {
     --tw-gradient-from: var(--color-black);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-
-  .from-black\/60 {
-    --tw-gradient-from: #0009;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .from-black\/60 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-black) 60%, transparent);
-    }
   }
 
   .from-blue-400 {
@@ -2618,12 +2575,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-blue-50:hover {
-      background-color: var(--color-blue-50);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-blue-800:hover {
       background-color: var(--color-blue-800);
     }
@@ -2644,12 +2595,6 @@
   @media (hover: hover) {
     .hover\:bg-gray-100:hover {
       background-color: var(--color-gray-100);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-green-50:hover {
-      background-color: var(--color-green-50);
     }
   }
 
@@ -2846,12 +2791,6 @@
   }
 
   @media (width >= 48rem) {
-    .md\:block {
-      display: block;
-    }
-  }
-
-  @media (width >= 48rem) {
     .md\:flex {
       display: flex;
     }
@@ -2896,12 +2835,6 @@
   @media (width >= 48rem) {
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:grid-cols-5 {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
 

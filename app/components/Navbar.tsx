@@ -92,14 +92,12 @@
                 <Image 
                     src="/images/logo.png"
                     alt="CEKOL ENGINEERING"
-                    width={48}
+                    width={50}
                     height={48}
                     className="h-12 w-12 mr-2"
                     priority
                 />
-                <span className="bg-gradient-to-r from-blue-900 to-blue-600 bg-clip-text text-transparent">
-                    CEKOL ENGINEERING
-                </span>
+                
             </motion.div>
 
             {/* Desktop Menu */}

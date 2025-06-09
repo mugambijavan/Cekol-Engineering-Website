@@ -1,4 +1,4 @@
-// File: /workspaces/ceed-golden-farm/app/layout.tsx
+// File: /home/javoh/GitHub/cekol/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

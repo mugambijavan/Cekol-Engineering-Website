@@ -1,4 +1,4 @@
-// File: /workspaces/ceed-golden-farm/app/contact/page.tsx
+// File: /home/javoh/GitHub/cekol/app/contact/page.tsx
 import * as entry from '../../../../app/contact/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

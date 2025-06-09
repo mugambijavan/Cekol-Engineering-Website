@@ -2,9 +2,10 @@
 import ContactForm from "../components/ContactForm";
 import { motion } from "framer-motion";
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 
-export default function ContactPage() {
+// Wrap the component that uses useSearchParams in a separate function
+function ContactContent() {
   const searchParams = useSearchParams();
   const isQuoteRequest = searchParams.get('form') === 'quote';
 
@@ -261,7 +262,7 @@ export default function ContactPage() {
                 Get directions to our office
               </p>
               <a 
-                href="https://maps.google.com/?q=Summit+House,+Moi+Avenue,+Nairobi" 
+                href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8223556205635!2d36.81649611145656!3d-1.2802420356160422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d35a92a549%3A0x4eeff65f3c103d36!2sSummit%20House%2C%20Moi%20Ave%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1749500856905!5m2!1sen!2ske"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-blue-900 font-medium hover:underline"
@@ -278,3 +279,20 @@ export default function ContactPage() {
     </div>
   );
 }
+
+// Main export with Suspense boundary
+export default function ContactPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="mt-4 text-gray-700">Loading contact information...</p>
+        </div>
+      </div>
+    }>
+      <ContactContent />
+    </Suspense>
+  );
+}
+

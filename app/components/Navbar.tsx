@@ -3,10 +3,11 @@
     import Image from 'next/image';
     import { useState, useEffect } from 'react';
     import { motion, AnimatePresence } from 'framer-motion';
-    import { usePathname } from 'next/navigation';
+    import { usePathname, useRouter } from 'next/navigation';
     import { FiMenu, FiX } from 'react-icons/fi';
 
     export default function Navbar() {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
@@ -14,13 +15,23 @@
 
     useEffect(() => {
         const handleScroll = () => {
-        const offset = window.scrollY;
-        setIsScrolled(offset > 100);
+        setIsScrolled(window.scrollY > 100);
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleQuoteClick = () => {
+        if (pathname === '/contact') {
+        document.getElementById('quote-section')?.scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+        } else {
+        router.push('/contact?form=quote');
+        }
+        setIsOpen(false);
+    };
 
     const navVariants = {
         hidden: { opacity: 0, y: -20 },
@@ -108,10 +119,10 @@
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center"
             >
-                <div className=" p-1 rounded-lg mr-3">
+                <div className="p-1 rounded-lg mr-3">
                 <Image 
                     src="/images/logo.png"
-                    alt="BUILDMASTER CONSTRUCTIONS"
+                    alt="CEKOL ENGINEERING"
                     width={50}
                     height={50}
                     className="h-10 w-10"
@@ -120,7 +131,7 @@
                 </div>
                 <div className="hidden sm:block">
                 <h1 className="font-bold text-xl text-white">CEKOL</h1>
-                <p className="text-amber-400 text-xs font-semibold tracking-wider">CONSTRUCTIONS</p>
+                <p className="text-amber-400 text-xs font-semibold tracking-wider">ENGINEERING</p>
                 </div>
             </motion.div>
 
@@ -159,6 +170,7 @@
                 )}
                 )}
                 <motion.button
+                onClick={handleQuoteClick}
                 whileHover={{ 
                     scale: 1.05,
                     backgroundColor: "#f59e0b",
@@ -234,8 +246,8 @@
                     className="px-4 pt-2"
                     >
                     <button 
+                        onClick={handleQuoteClick}
                         className="w-full bg-amber-500 text-gray-900 px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-amber-600 transition-colors"
-                        onClick={() => setIsOpen(false)}
                     >
                         GET QUOTE
                     </button>

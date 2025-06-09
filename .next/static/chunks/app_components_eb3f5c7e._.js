@@ -14,89 +14,75 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 ;
 ;
 function Footer() {
-    const variants = {
-        hidden: {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].footer, {
+        initial: {
             opacity: 0,
-            y: 20
+            y: 30
         },
-        visible: {
+        animate: {
             opacity: 1,
             y: 0
-        }
-    };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].footer, {
-        initial: "hidden",
-        animate: "visible",
-        transition: {
-            duration: 0.8
         },
-        variants: variants,
-        className: "bg-gray-900 text-gray-300 py-8 border-t-4 border-[#ffb400]",
+        transition: {
+            duration: 0.7,
+            ease: "easeOut"
+        },
+        className: "bg-gray-900 text-gray-300 py-6",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "max-w-7xl mx-auto px-4",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                initial: {
-                    opacity: 0
-                },
-                animate: {
-                    opacity: 1
-                },
-                transition: {
-                    delay: 0.5
-                },
-                className: "pt-6 border-t border-gray-700 text-center",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-sm text-gray-400",
-                        children: [
-                            "© ",
-                            new Date().getFullYear(),
-                            " Cekol Engineering Ltd. All rights reserved."
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/components/Footer.tsx",
-                        lineNumber: 26,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
-                        whileHover: {
-                            scale: 1.05
-                        },
-                        className: "text-xs text-gray-500 mt-2",
-                        children: [
-                            "Developed by ",
-                            ' ',
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                href: "https://bhakitah.co.ke",
-                                target: "_blank",
-                                rel: "noopener noreferrer",
-                                className: "text-[#ffb400] hover:text-[#ffd700] font-medium transition-colors duration-300",
-                                children: "BhakitahTech"
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/Footer.tsx",
-                                lineNumber: 34,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/components/Footer.tsx",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/components/Footer.tsx",
-                lineNumber: 20,
-                columnNumber: 9
-            }, this)
-        }, void 0, false, {
+            className: "max-w-4xl mx-auto flex flex-col items-center space-y-2",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                    initial: {
+                        opacity: 0,
+                        y: 10
+                    },
+                    animate: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    transition: {
+                        delay: 0.4,
+                        duration: 0.7
+                    },
+                    className: "text-xs tracking-wide",
+                    children: [
+                        "© ",
+                        new Date().getFullYear(),
+                        " Cekol Engineering Ltd."
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/components/Footer.tsx",
+                    lineNumber: 13,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
+                    href: "https://bhakitah.co.ke",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    whileHover: {
+                        scale: 1.06,
+                        color: "#ffd700"
+                    },
+                    transition: {
+                        type: "spring",
+                        stiffness: 300
+                    },
+                    className: "text-xs text-[#ffb400] hover:text-[#ffd700] font-medium transition-colors",
+                    children: "Developed by BhakitahTech"
+                }, void 0, false, {
+                    fileName: "[project]/app/components/Footer.tsx",
+                    lineNumber: 21,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/app/components/Footer.tsx",
-            lineNumber: 18,
+            lineNumber: 12,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Footer.tsx",
-        lineNumber: 11,
+        lineNumber: 6,
         columnNumber: 5
     }, this);
 }
@@ -134,6 +120,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 function Navbar() {
     _s();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isScrolled, setIsScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
@@ -148,8 +135,7 @@ function Navbar() {
         "Navbar.useEffect": ()=>{
             const handleScroll = {
                 "Navbar.useEffect.handleScroll": ()=>{
-                    const offset = window.scrollY;
-                    setIsScrolled(offset > 100);
+                    setIsScrolled(window.scrollY > 100);
                 }
             }["Navbar.useEffect.handleScroll"];
             window.addEventListener('scroll', handleScroll);
@@ -158,6 +144,16 @@ function Navbar() {
             })["Navbar.useEffect"];
         }
     }["Navbar.useEffect"], []);
+    const handleQuoteClick = ()=>{
+        if (pathname === '/contact') {
+            document.getElementById('quote-section')?.scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else {
+            router.push('/contact?form=quote');
+        }
+        setIsOpen(false);
+    };
     const navVariants = {
         hidden: {
             opacity: 0,
@@ -248,22 +244,22 @@ function Navbar() {
                             className: "flex items-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: " p-1 rounded-lg mr-3",
+                                    className: "p-1 rounded-lg mr-3",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         src: "/images/logo.png",
-                                        alt: "BUILDMASTER CONSTRUCTIONS",
+                                        alt: "CEKOL ENGINEERING",
                                         width: 50,
                                         height: 50,
                                         className: "h-10 w-10",
                                         priority: true
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 112,
+                                        lineNumber: 123,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 111,
+                                    lineNumber: 122,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,27 +270,27 @@ function Navbar() {
                                             children: "CEKOL"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 133,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-amber-400 text-xs font-semibold tracking-wider",
-                                            children: "CONSTRUCTIONS"
+                                            children: "ENGINEERING"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 123,
+                                            lineNumber: 134,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 132,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 106,
+                            lineNumber: 117,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -323,22 +319,23 @@ function Navbar() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/components/Navbar.tsx",
-                                                    lineNumber: 151,
+                                                    lineNumber: 162,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 152,
                                             columnNumber: 21
                                         }, this)
                                     }, item, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 134,
+                                        lineNumber: 145,
                                         columnNumber: 21
                                     }, this);
                                 }),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                    onClick: handleQuoteClick,
                                     whileHover: {
                                         scale: 1.05,
                                         backgroundColor: "#f59e0b",
@@ -353,13 +350,13 @@ function Navbar() {
                                     children: "GET QUOTE"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 172,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 128,
+                            lineNumber: 139,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -372,24 +369,24 @@ function Navbar() {
                                 className: "w-8 h-8 text-amber-500"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.tsx",
-                                lineNumber: 185,
+                                lineNumber: 197,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiMenu"], {
                                 className: "w-8 h-8 text-amber-500"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.tsx",
-                                lineNumber: 187,
+                                lineNumber: 199,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 179,
+                            lineNumber: 191,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Navbar.tsx",
-                    lineNumber: 105,
+                    lineNumber: 116,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -420,23 +417,23 @@ function Navbar() {
                                                         layoutId: "mobileActiveTab"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Navbar.tsx",
-                                                        lineNumber: 222,
+                                                        lineNumber: 234,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Navbar.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 231,
                                                 columnNumber: 29
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 212,
+                                            lineNumber: 224,
                                             columnNumber: 25
                                         }, this)
                                     }, item, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 208,
+                                        lineNumber: 220,
                                         columnNumber: 25
                                     }, this);
                                 }),
@@ -444,49 +441,50 @@ function Navbar() {
                                     variants: mobileLinkVariants,
                                     className: "px-4 pt-2",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleQuoteClick,
                                         className: "w-full bg-amber-500 text-gray-900 px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-amber-600 transition-colors",
-                                        onClick: ()=>setIsOpen(false),
                                         children: "GET QUOTE"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 236,
+                                        lineNumber: 248,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 232,
+                                    lineNumber: 244,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 202,
+                            lineNumber: 214,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Navbar.tsx",
-                        lineNumber: 195,
+                        lineNumber: 207,
                         columnNumber: 17
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/Navbar.tsx",
-                    lineNumber: 193,
+                    lineNumber: 205,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/Navbar.tsx",
-            lineNumber: 104,
+            lineNumber: 115,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Navbar.tsx",
-        lineNumber: 94,
+        lineNumber: 105,
         columnNumber: 9
     }, this);
 }
-_s(Navbar, "FH4dfCU3QfeQBptDgePADs5xDtw=", false, function() {
+_s(Navbar, "PinzjtFwW6gtjir3i536HdNYDEs=", false, function() {
     return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
     ];
 });

@@ -2,37 +2,57 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { FiCheckCircle, FiClock, FiUsers } from 'react-icons/fi';
+import Image from 'next/image';
+import { 
+  FiCheckCircle, 
+  FiClock, 
+  FiUsers, 
+  FiAward,
+  FiMapPin,
+  FiShield,
+  FiTrendingUp,
+  FiDollarSign
+} from 'react-icons/fi';
 import { SERVICES, PROJECTS } from './_utils/constants';
 import ProjectCard from './components/ProjectsCard';
 
 export default function Home() {
-  const slides = [
-    { image: '/images/image.png', text: 'Engineering Excellence Since 2011' },
-    { image: '/images/image2.png', text: '250+ Successful Projects Delivered' },
-    { image: '/images/image3.png', text: '98% Client Satisfaction Rate' },
-    { image: '/images/image4.png', text: 'Across 12 African Nations' },
-    { image: '/images/image5.png', text: 'ISO 9001:2015 Certified Quality' },
+  const heroSlides = [
+    { 
+      image: '/images/image.png', 
+      title: 'Engineering Excellence Since 2011',
+      subtitle: 'Delivering innovative construction solutions across Africa'
+    },
+    { 
+      image: '/images/image.png', 
+      title: '250+ Successful Projects Delivered',
+      subtitle: 'From commercial buildings to infrastructure development'
+    },
+    { 
+      image: '/images/image.png', 
+      title: 'NCA5 Certified Contractor',
+      subtitle: 'Highest category certification for building works'
+    },
   ];
   
   const projectsRef = useRef(null);
+  const aboutRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide(prev => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
+useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveSlide(prev => (prev + 1) % heroSlides.length);
+  }, 5000);
+  return () => clearInterval(interval);
+}, [heroSlides.length]);
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative h-screen">
         <AnimatePresence mode='wait'>
-          {slides.map((slide, index) => (
+          {heroSlides.map((slide, index) => (
             activeSlide === index && (
               <motion.div
                 key={index}
@@ -51,29 +71,44 @@ export default function Home() {
                     backgroundPosition: 'center'
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
                 </div>
                 
                 <motion.div 
                   style={{ rotate, scale: 1 }}
                   className="absolute inset-0"
                 >
-                  <div className="container h-full flex items-center justify-center text-center">
+                  <div className="container h-full flex items-center justify-center text-center px-4">
                     <motion.div
                       initial={{ y: 50, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.5 }}
-                      className="text-white"
+                      className="text-white max-w-4xl"
                     >
-                      <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                        {slide.text}
+                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+                        {slide.title}
                       </h1>
-                      <motion.div
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 1, duration: 1.5 }}
-                        className="h-1 bg-white origin-left"
-                      />
+                      <p className="text-xl md:text-2xl mb-8 text-gray-300">{slide.subtitle}</p>
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="/contact">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+                          >
+                            Get a Quote
+                          </motion.button>
+                        </Link>
+                        <Link href="/about">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-white hover:text-gray-900 transition-colors"
+                          >
+                            Learn More
+                          </motion.button>
+                        </Link>
+                      </div>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -84,7 +119,7 @@ export default function Home() {
 
         {/* Slide Navigation */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
-          {slides.map((_, index) => (
+          {heroSlides.map((_, index) => (
             <motion.button
               key={index}
               whileHover={{ scale: 1.2 }}
@@ -104,37 +139,33 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="relative py-24 bg-gradient-to-br from-slate-900 to-blue-900 text-white overflow-hidden"
+        className="relative py-20 bg-gradient-to-br from-gray-900 to-amber-900 text-white overflow-hidden"
       >
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute -right-32 -top-32 w-96 h-96 bg-gradient-to-r from-emerald-400/30 to-blue-400/30 rounded-full blur-2xl" />
-          <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-gradient-to-r from-amber-400/30 to-rose-400/30 rounded-full blur-2xl" />
+          <div className="absolute -right-32 -top-32 w-96 h-96 bg-gradient-to-r from-amber-400/30 to-orange-400/30 rounded-full blur-2xl" />
+          <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-gradient-to-r from-gray-400/30 to-blue-400/30 rounded-full blur-2xl" />
         </div>
 
-        <div className="container relative grid md:grid-cols-3 gap-8 text-center mx-auto">
+        <div className="container relative grid md:grid-cols-4 gap-6 text-center mx-auto px-4">
           {[
-            { icon: <FiCheckCircle />, value: '250+', label: 'Projects Completed' },
-            { icon: <FiClock />, value: '12+', label: 'Years Experience' },
-            { icon: <FiUsers />, value: '112+', label: 'Skilled Professionals' },
+            { icon: <FiCheckCircle size={28} />, value: '250+', label: 'Projects Completed' },
+            { icon: <FiClock size={28} />, value: '12+', label: 'Years Experience' },
+            { icon: <FiUsers size={28} />, value: '112+', label: 'Skilled Professionals' },
+            { icon: <FiMapPin size={28} />, value: '12+', label: 'African Countries' },
           ].map((stat, index) => (
             <motion.div 
               key={index}
               whileHover={{ y: -10 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="p-8 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all"
+              className="p-6 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all"
             >
-              <div className="flex justify-center text-4xl mb-6">
-                <motion.div 
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 5 }}
-                >
-                  {stat.icon}
-                </motion.div>
+              <div className="flex justify-center text-3xl mb-4 text-amber-400">
+                {stat.icon}
               </div>
-              <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
+              <div className="text-4xl font-bold mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm uppercase tracking-widest text-slate-300">
+              <div className="text-sm uppercase tracking-widest text-gray-300">
                 {stat.label}
               </div>
             </motion.div>
@@ -142,20 +173,108 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* About Section */}
+      <section ref={aboutRef} className="relative py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                <Image 
+                  src="/images/image.png"
+                  alt="CEKOL Engineering Team"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-amber-600 text-white p-6 rounded-lg shadow-lg">
+                  <div className="text-3xl font-bold">12+</div>
+                  <div className="text-sm">Years Experience</div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                About <span className="text-amber-600">CEKOL Engineering</span>
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited is a leading civil engineering and construction company operating across Africa. We specialize in delivering high-quality, innovative, and sustainable infrastructure solutions.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                    <FiAward size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">NCA5 Certified</h4>
+                    <p className="text-gray-600">Highest category certification for building works from the National Construction Authority</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                    <FiShield size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Safety First</h4>
+                    <p className="text-gray-600">DOSH certified with comprehensive workplace safety policies and procedures</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                    <FiTrendingUp size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Sustainable Growth</h4>
+                    <p className="text-gray-600">Committed to environmental sustainability and continuous improvement</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Link href="/about">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Read Our Full Story
+                </motion.button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="relative py-28 bg-slate-50">
+      <section className="relative py-20 bg-gray-50">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
         
-        <div className="container relative mx-auto">
-          <motion.h2 
+        <div className="container mx-auto px-4">
+          <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center mb-20 font-serif bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent"
+            className="text-center mb-16"
           >
-            Our Core Services
-          </motion.h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Our <span className="text-amber-600">Comprehensive</span> Services
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We offer a full range of construction and engineering services to meet all your infrastructure needs
+            </p>
+          </motion.div>
           
           <motion.div 
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
@@ -175,17 +294,17 @@ export default function Home() {
                 }}
                 className="w-full max-w-[400px]"
               >
-                <div className="h-full bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group border border-slate-100 hover:border-blue-100">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4 group-hover:bg-blue-200 transition-colors">
-                      <span className="text-2xl text-blue-600">0{index + 1}</span>
+                <div className="h-full bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100 hover:border-amber-100">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-amber-100 flex items-center justify-center mr-4 group-hover:bg-amber-200 transition-colors">
+                      <span className="text-xl text-amber-600 font-bold">{index + 1}</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-800">{service.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
                   </div>
-                  <p className="text-slate-600 leading-relaxed mb-6">
+                  <p className="text-gray-600 leading-relaxed mb-4">
                     {service.description}
                   </p>
-                  <div className="flex items-center text-blue-600 font-medium">
+                  <div className="flex items-center text-amber-600 font-medium">
                     <span>Learn More</span>
                     <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -198,26 +317,90 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Choose Us Section */}
+      <section className="relative py-20 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-4"
+            >
+              Why <span className="text-amber-400">Choose CEKOL</span> Engineering?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-gray-300 max-w-3xl mx-auto"
+            >
+              We stand out in the construction industry through our commitment to excellence and innovation
+            </motion.p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <FiAward size={32} />,
+                title: "Certified Excellence",
+                description: "NCA5 certified with all necessary government registrations and compliance"
+              },
+              {
+                icon: <FiDollarSign size={32} />,
+                title: "Competitive Pricing",
+                description: "Cost-effective solutions without compromising on quality or safety"
+              },
+              {
+                icon: <FiClock size={32} />,
+                title: "Timely Delivery",
+                description: "Proven track record of completing projects on schedule"
+              },
+              {
+                icon: <FiShield size={32} />,
+                title: "Safety First",
+                description: "DOSH certified with comprehensive safety protocols for all projects"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors"
+              >
+                <div className="text-amber-400 mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-gray-300">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Projects */}
-      <section ref={projectsRef} className="relative py-28 bg-slate-900 overflow-hidden">
+      <section ref={projectsRef} className="relative py-20 bg-white overflow-hidden">
         <motion.div 
           style={{ rotate }}
-          className="absolute -right-48 -top-48 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-emerald-400/20 rounded-full"
-        />
-        <motion.div 
-          style={{ rotate: useTransform(scrollYProgress, [0, 1], [15, 0]) }}
-          className="absolute -left-48 -bottom-48 w-96 h-96 bg-gradient-to-r from-amber-400/20 to-rose-400/20 rounded-full"
+          className="absolute -right-48 -top-48 w-96 h-96 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-full"
         />
 
-        <div className="container relative mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl font-bold text-center mb-20 font-serif text-white"
+            className="text-center mb-16"
           >
-            Recent Success Stories
-          </motion.h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Our <span className="text-amber-600">Featured</span> Projects
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Showcasing some of our most significant and challenging projects
+            </p>
+          </motion.div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {PROJECTS.map((project, index) => (
@@ -235,15 +418,126 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-20 text-center"
+            className="mt-16 text-center"
           >
             <Link href="/projects">
               <button 
-                className="bg-gradient-to-r from-blue-500 to-emerald-500 text-white px-8 py-4 rounded-xl hover:scale-105 transition-transform font-medium text-lg shadow-lg relative overflow-hidden group"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg shadow-lg transition-colors"
               >
-                <span className="relative z-10">View All Projects</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                View All Projects
               </button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              What Our <span className="text-amber-600">Clients</span> Say
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Hear from some of our satisfied clients about their experience working with us
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "CEKOL Engineering delivered our market complex project on time and within budget. Their attention to detail was impressive.",
+                author: "Bashir Mohamed Mohamud",
+                position: "Director, Infinity Development Ltd",
+                project: "Uhuru Business Park Market Complex"
+              },
+              {
+                quote: "The team demonstrated exceptional professionalism in executing our electric fence project. Highly recommended for government contracts.",
+                author: "Dr. Erustus Kanga",
+                position: "Director General, Kenya Wildlife Service",
+                project: "Kapkatunga-Kipyemit Electric Fence"
+              },
+              {
+                quote: "Their expertise in road construction and gravelling works is unmatched in the region. We've partnered on multiple projects.",
+                author: "Eng. George Omondi",
+                position: "Project Manager, Ministry of Transport",
+                project: "Various Road Construction Projects"
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-xl p-8 shadow-md"
+              >
+                <div className="text-amber-500 text-4xl mb-4">&quot;</div>
+                <p className="text-gray-700 italic mb-6">{testimonial.quote}</p>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-bold text-gray-900">{testimonial.author}</h4>
+                  <p className="text-gray-600 text-sm">{testimonial.position}</p>
+                  <p className="text-amber-600 text-sm mt-1">{testimonial.project}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-20 bg-gradient-to-r from-gray-900 to-amber-900 text-white">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[url('/images/image.png')] bg-cover bg-center" />
+        </div>
+        
+        <div className="container mx-auto px-4 relative text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-6"
+          >
+            Ready to Start Your Project?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl mb-8 max-w-3xl mx-auto"
+          >
+            Contact us today to discuss your construction needs and get a free consultation
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+              >
+                Get a Free Quote
+              </motion.button>
+            </Link>
+            <Link href="/projects">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                View Our Work
+              </motion.button>
             </Link>
           </motion.div>
         </div>

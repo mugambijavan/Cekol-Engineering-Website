@@ -2,45 +2,32 @@
 import { motion } from 'framer-motion';
 
 export default function Footer() {
-  const variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <motion.footer 
-      initial="hidden"
-      animate="visible"
-      transition={{ duration: 0.8 }}
-      variants={variants}
-      className="bg-gray-900 text-gray-300 py-8 border-t-4 border-[#ffb400]"
+    <motion.footer
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="bg-gray-900 text-gray-300 py-6"
     >
-      <div className="max-w-7xl mx-auto px-4">
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="pt-6 border-t border-gray-700 text-center"
+      <div className="max-w-4xl mx-auto flex flex-col items-center space-y-2">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7 }}
+          className="text-xs tracking-wide"
         >
-          <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} Cekol Engineering Ltd. All rights reserved.
-          </p>
-          <motion.p 
-            whileHover={{ scale: 1.05 }}
-            className="text-xs text-gray-500 mt-2"
-          >
-            Developed by {' '}
-            <a 
-              href="https://bhakitah.co.ke" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#ffb400] hover:text-[#ffd700] font-medium transition-colors duration-300"
-            >
-              BhakitahTech
-            </a>
-          </motion.p>
-        </motion.div>
+          &copy; {new Date().getFullYear()} Cekol Engineering Ltd.
+        </motion.p>
+        <motion.a
+          href="https://bhakitah.co.ke"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.06, color: "#ffd700" }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="text-xs text-[#ffb400] hover:text-[#ffd700] font-medium transition-colors"
+        >
+          Developed by BhakitahTech
+        </motion.a>
       </div>
     </motion.footer>
   );

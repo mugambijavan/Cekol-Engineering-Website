@@ -1,46 +1,68 @@
+// components/ServiceCard.js
 'use client';
 import { motion } from 'framer-motion';
-import { FiTool, FiArrowRight } from 'react-icons/fi';
+import Image from 'next/image';
+
+type ServiceCardProps = {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  image?: string;
+  delay?: number;
+};
 
 export default function ServiceCard({ 
   title, 
-  description 
-}: {
-  title: string;
-  description: string;
-}) {
+  description,
+  icon,
+  image,
+  delay = 0
+}: ServiceCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay }}
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="bg-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col"
     >
-      {/* Icon Header */}
-      <div className="bg-gradient-to-r from-blue-900 to-emerald-800 p-6">
-        <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
-          <FiTool className="text-2xl text-white" />
+      <div className="relative h-48">
+        {image && (
+          <Image 
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-blue-900/50 flex items-end p-6">
+          <div className="bg-white/20 backdrop-blur-sm rounded-full w-14 h-14 flex items-center justify-center text-2xl">
+            {icon}
+          </div>
         </div>
       </div>
-
-      <div className="p-6">
+      
+      <div className="p-6 flex-grow">
         <h3 className="text-2xl font-bold text-gray-900 mb-3">{title}</h3>
-        
-        <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
-          {description}
-        </p>
-
-        {/* CTA Button */}
-        <button className="flex items-center text-blue-900 hover:text-blue-800 transition-colors">
-          <span className="font-medium">Learn More</span>
-          <FiArrowRight className="ml-2 w-4 h-4" />
+        <p className="text-gray-600 mb-6">{description}</p>
+        <button className="mt-auto text-blue-900 font-medium hover:underline flex items-center">
+          View Case Studies
+          <svg 
+            className="ml-2 w-4 h-4" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M14 5l7 7m0 0l-7 7m7-7H3" 
+            />
+          </svg>
         </button>
       </div>
-
-      {/* Hover Effect Border */}
-      <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-900 rounded-xl pointer-events-none transition-all duration-300" />
     </motion.div>
   );
 }

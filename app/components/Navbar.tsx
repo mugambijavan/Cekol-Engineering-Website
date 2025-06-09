@@ -24,14 +24,25 @@
 
     const navVariants = {
         hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+        visible: { 
+        opacity: 1, 
+        y: 0, 
+        transition: { 
+            duration: 0.5,
+            ease: "easeOut"
+        } 
+        },
     };
 
     const linkVariants = {
         hover: { 
         scale: 1.05,
-        color: "#1d4ed8",
-        transition: { type: "spring", stiffness: 300 }
+        color: "#f59e0b",
+        transition: { 
+            type: "spring", 
+            stiffness: 300,
+            duration: 0.3
+        }
         },
         tap: { scale: 0.95 }
     };
@@ -63,9 +74,17 @@
         open: { 
         opacity: 1,
         y: 0,
-        transition: { type: "spring", stiffness: 200 }
+        transition: { 
+            type: "spring", 
+            stiffness: 200,
+            damping: 15
+        }
         },
-        closed: { opacity: 0, y: -20 }
+        closed: { 
+        opacity: 0, 
+        y: -20,
+        transition: { duration: 0.2 }
+        }
     };
 
     const getLinkPath = (item: string) => 
@@ -78,7 +97,7 @@
         variants={navVariants}
         className={`fixed w-full z-50 transition-all duration-300 ${
             isScrolled 
-            ? 'bg-white shadow-xl' 
+            ? 'bg-gray-900 shadow-xl' 
             : 'md:bg-transparent md:shadow-none'
         }`}
         >
@@ -87,21 +106,26 @@
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="transition-colors duration-300"
+                className="flex items-center"
             >
+                <div className="bg-amber-500 p-1 rounded-lg mr-3">
                 <Image 
-                    src="/images/logo.png"
-                    alt="CEKOL ENGINEERING"
+                    src="/images/construction-logo.png"
+                    alt="BUILDMASTER CONSTRUCTIONS"
                     width={50}
-                    height={48}
-                    className="h-12 w-12 mr-2"
+                    height={50}
+                    className="h-10 w-10"
                     priority
                 />
-                
+                </div>
+                <div className="hidden sm:block">
+                <h1 className="font-bold text-xl text-white">BUILDMASTER</h1>
+                <p className="text-amber-400 text-xs font-semibold tracking-wider">CONSTRUCTIONS</p>
+                </div>
             </motion.div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-4 items-center">
+            <div className="hidden md:flex space-x-6 items-center">
                 {navItems.map((item) => {
                 const href = getLinkPath(item);
                 const isActive = pathname === href;
@@ -118,14 +142,14 @@
                         href={href}
                         className={`${
                         isActive 
-                            ? 'bg-blue-50 text-blue-900' 
-                            : `text-${isScrolled ? 'gray-700' : 'white'}`
-                        } text-lg font-medium px-4 py-2 rounded-lg transition-colors duration-300`}
+                            ? 'text-amber-400' 
+                            : `text-${isScrolled ? 'gray-300' : 'white'}`
+                        } text-lg font-bold px-3 py-2 transition-colors duration-300`}
                     >
                         {item}
                         {isActive && (
                         <motion.div
-                            className="absolute inset-0 border-2 border-blue-200 rounded-lg"
+                            className="absolute bottom-0 left-0 w-full h-1 bg-amber-500 rounded-full"
                             layoutId="activeTab"
                             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                         />
@@ -135,15 +159,19 @@
                 )}
                 )}
                 <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                    scale: 1.05,
+                    backgroundColor: "#f59e0b",
+                    transition: { duration: 0.3 }
+                }}
                 whileTap={{ scale: 0.95 }}
                 className={`${
                     isScrolled 
-                    ? 'bg-blue-900 text-white' 
-                    : 'md:bg-white md:text-blue-900'
-                } px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ml-4`}
+                    ? 'bg-amber-500 text-gray-900' 
+                    : 'md:bg-amber-500 md:text-gray-900'
+                } px-6 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 ml-4`}
                 >
-                Get Quote
+                GET QUOTE
                 </motion.button>
             </div>
 
@@ -151,12 +179,12 @@
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden p-2"
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.9 }}
             >
                 {isOpen ? (
-                <FiX className="w-8 h-8 text-blue-900" />
+                <FiX className="w-8 h-8 text-amber-500" />
                 ) : (
-                <FiMenu className="w-8 h-8 text-blue-900" />
+                <FiMenu className="w-8 h-8 text-amber-500" />
                 )}
             </motion.button>
             </div>
@@ -169,9 +197,9 @@
                 animate="open"
                 exit="closed"
                 variants={mobileMenuVariants}
-                className="md:hidden overflow-hidden"
+                className="md:hidden overflow-hidden bg-gray-800 rounded-lg shadow-xl border border-gray-700"
                 >
-                <div className="pt-2 pb-4 space-y-2">
+                <div className="pt-2 pb-4 space-y-1">
                     {navItems.map((item) => {
                     const href = getLinkPath(item);
                     const isActive = pathname === href;
@@ -184,27 +212,32 @@
                         <Link 
                             href={href}
                             className={`${
-                            isActive ? 'bg-blue-100 text-blue-900' : 'text-gray-700'
-                            } block px-4 py-3 rounded-lg text-lg font-medium mx-2 transition-colors`}
+                            isActive ? 'bg-amber-900 text-amber-400' : 'text-gray-300'
+                            } block px-6 py-4 text-lg font-bold mx-2 transition-colors rounded-lg`}
                             onClick={() => setIsOpen(false)}
                         >
+                            <div className="flex items-center">
                             {item}
                             {isActive && (
-                            <motion.div
-                                className="absolute left-0 top-1/2 h-3/5 w-1 bg-blue-600 rounded-r-full -translate-y-1/2"
+                                <motion.div
+                                className="ml-2 w-2 h-2 bg-amber-500 rounded-full"
                                 layoutId="mobileActiveTab"
-                            />
+                                />
                             )}
+                            </div>
                         </Link>
                         </motion.div>
                     )}
                     )}
                     <motion.div
                     variants={mobileLinkVariants}
-                    className="px-4 pt-4"
+                    className="px-4 pt-2"
                     >
-                    <button className="w-full bg-blue-900 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-800 transition-colors">
-                        Get Quote
+                    <button 
+                        className="w-full bg-amber-500 text-gray-900 px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-amber-600 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        GET QUOTE
                     </button>
                     </motion.div>
                 </div>
@@ -212,6 +245,18 @@
             )}
             </AnimatePresence>
         </div>
+        
+        {/* Construction Animation Bar */}
+        <motion.div 
+            className="h-1 w-full bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-500"
+            initial={{ backgroundPosition: "0%" }}
+            animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
+            transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "linear"
+            }}
+        />
         </motion.nav>
     );
     }

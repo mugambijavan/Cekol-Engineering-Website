@@ -189,7 +189,7 @@ const AboutPage = () => {
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 pointer-events-none" />
         {/* Slide text and stats */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-xs px-4">
           <AnimatePresence mode="wait">
             {slides.map((slide, index) =>
               activeSlide === index && (
@@ -202,7 +202,7 @@ const AboutPage = () => {
                   transition={{ duration: 1.0, ease: 'easeInOut' }}
                 >
                   <motion.h1 
-                    className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white drop-shadow-lg"
+                    className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white text-xs drop-shadow-lg"
                     initial={{ letterSpacing: '0em' }}
                     animate={{ letterSpacing: '0.02em' }}
                     transition={{ duration: 1.5, delay: 0.3 }}

@@ -245,18 +245,6 @@
             )}
             </AnimatePresence>
         </div>
-        
-        {/* Construction Animation Bar */}
-        <motion.div 
-            className="h-1 w-full bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-500"
-            initial={{ backgroundPosition: "0%" }}
-            animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-            transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "linear"
-            }}
-        />
         </motion.nav>
     );
     }

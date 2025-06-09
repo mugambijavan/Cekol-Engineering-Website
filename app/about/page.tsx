@@ -240,16 +240,6 @@ const AboutPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center"
-          >
-            <div className="text-white text-sm mb-2">Scroll to explore</div>
-            <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
-              <div className="w-1 h-2 bg-white rounded-full" />
-            </div>
-          </motion.div>
         </motion.div>
       </section>
 

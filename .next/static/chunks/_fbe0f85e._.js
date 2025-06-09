@@ -6,7 +6,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports } = 
 {
 const e = new Error(`Could not parse module '[project]/app/about/page.tsx'
 
-Unexpected token `div`. Expected jsx identifier`);
+Unexpected token `section`. Expected jsx identifier`);
 e.code = 'MODULE_UNPARSEABLE';
 throw e;}}),
 "[project]/node_modules/framer-motion/dist/es/render/dom/scroll/observe.mjs [app-client] (ecmascript)": ((__turbopack_context__) => {

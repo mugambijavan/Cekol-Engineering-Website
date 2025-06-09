@@ -13,23 +13,22 @@ const AboutPage = () => {
   const rotateX = useTransform(scrollYProgress, [0, 1], [0, -3]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0]);
 
-  const heroHeight = 'h-[80vh]';
+  // Changed from 80vh to ~48vh to reduce by 40%
+  const heroHeight = 'h-[48vh]';
 
+  const bgImage = 'image.png';
   const slides = [
     { 
       text: 'Engineering the Impossible, Making it Possible',
-      stats: ['112+ Skilled Professionals', '250+ Completed Projects', '12 African Countries'],
-      bgImage: 'image.png'
+      stats: ['112+ Skilled Professionals', '250+ Completed Projects', '12 African Countries']
     },
     { 
       text: 'NCA Category NCAS & NCAA Certified',
-      stats: ['KES 727M Annual Turnover', 'ISO 9001:2015 Certified', 'AGPO Youth Registered'],
-      bgImage: 'image2.png'
+      stats: ['KES 727M Annual Turnover', 'ISO 9001:2015 Certified', 'AGPO Youth Registered']
     },
     { 
       text: 'Sustainable Infrastructure Solutions',
-      stats: ['18KM Electric Fence Project', 'KES 349M Market Complex', 'Environmental Policy Compliant'],
-      bgImage: 'image3.png'
+      stats: ['18KM Electric Fence Project', 'KES 349M Market Complex', 'Environmental Policy Compliant']
     },
   ];
 
@@ -107,9 +106,8 @@ const AboutPage = () => {
       setActiveSlide(prev => (prev + 1) % slides.length);
     }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
-  // Prevent background scrolling when modal is open
   useEffect(() => {
     if (isProfileOpen) {
       document.body.style.overflow = 'hidden';
@@ -178,72 +176,66 @@ const AboutPage = () => {
 
       {/* Hero Section */}
       <section className={`relative ${heroHeight} overflow-hidden`}>
-        <AnimatePresence mode='wait'>
-          {slides.map((slide, index) => (
-            activeSlide === index && (
-              <motion.div
-                key={index}
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(/images/${slide.bgImage})`,
-                  // eslint-disable-next-line react-hooks/rules-of-hooks
-                  scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]),
-                  rotateX,
-                  opacity
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30">
-                  <div className="container h-full flex flex-col items-center justify-center text-center px-4">
-                    <motion.div
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 1.2, delay: 0.3 }}
-                      className="text-white max-w-4xl mx-auto"
-                    >
-                      <motion.h1 
-                        className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
-                        initial={{ letterSpacing: '0em' }}
-                        animate={{ letterSpacing: '0.02em' }}
-                        transition={{ duration: 1.5, delay: 0.5 }}
+        {/* Single background image */}
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(/images/${bgImage})`,
+            scale: useTransform(scrollYProgress, [0, 1], [1, 1.1]),
+            rotateX,
+            opacity
+          }}
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 pointer-events-none" />
+        {/* Slide text and stats */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+          <AnimatePresence mode="wait">
+            {slides.map((slide, index) =>
+              activeSlide === index && (
+                <motion.div
+                  key={index}
+                  className="w-full max-w-4xl mx-auto"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -60 }}
+                  transition={{ duration: 1.0, ease: 'easeInOut' }}
+                >
+                  <motion.h1 
+                    className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white drop-shadow-lg"
+                    initial={{ letterSpacing: '0em' }}
+                    animate={{ letterSpacing: '0.02em' }}
+                    transition={{ duration: 1.5, delay: 0.3 }}
+                  >
+                    {slide.text}
+                  </motion.h1>
+                  <motion.div 
+                    className="flex flex-wrap justify-center gap-4 mt-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    {slide.stats.map((stat, idx) => (
+                      <motion.div
+                        key={idx}
+                        className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white shadow-md"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: idx * 0.15, type: 'spring', stiffness: 100, damping: 10 }}
+                        whileHover={{ scale: 1.05 }}
                       >
-                        {slide.text}
-                      </motion.h1>
-                      
-                      <motion.div 
-                        className="flex flex-wrap justify-center gap-4 mt-8"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                      >
-                        {slide.stats.map((stat, idx) => (
-                          <motion.div
-                            key={idx}
-                            className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: idx * 0.15, type: 'spring', stiffness: 100, damping: 10 }}
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            <span className="font-medium">{stat}</span>
-                          </motion.div>
-                        ))}
+                        <span className="font-medium">{stat}</span>
                       </motion.div>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          ))}
-        </AnimatePresence>
-
+                    ))}
+                  </motion.div>
+                </motion.div>
+              )
+            )}
+          </AnimatePresence>
+        </div>
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}

@@ -108,9 +108,9 @@
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center"
             >
-                <div className="bg-amber-500 p-1 rounded-lg mr-3">
+                <div className=" p-1 rounded-lg mr-3">
                 <Image 
-                    src="/images/construction-logo.png"
+                    src="/images/logo.png"
                     alt="BUILDMASTER CONSTRUCTIONS"
                     width={50}
                     height={50}
@@ -119,7 +119,7 @@
                 />
                 </div>
                 <div className="hidden sm:block">
-                <h1 className="font-bold text-xl text-white">BUILDMASTER</h1>
+                <h1 className="font-bold text-xl text-white">CEKOL</h1>
                 <p className="text-amber-400 text-xs font-semibold tracking-wider">CONSTRUCTIONS</p>
                 </div>
             </motion.div>

@@ -262,7 +262,7 @@ function ContactContent() {
                 Get directions to our office
               </p>
               <a 
-                href="https://maps.gogle.com/?q=Summit+House,+Moi+Avenue,+Nairobi" 
+                href="https://maps.app.goo.gl/YSwbkwSHwWSG2q1p8" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-blue-900 font-medium hover:underline"

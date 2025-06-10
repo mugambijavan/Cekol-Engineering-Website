@@ -262,7 +262,7 @@ function ContactContent() {
                 Get directions to our office
               </p>
               <a 
-                href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8223556205635!2d36.81649611145656!3d-1.2802420356160422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d35a92a549%3A0x4eeff65f3c103d36!2sSummit%20House%2C%20Moi%20Ave%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1749500856905!5m2!1sen!2ske"
+                href="https://maps.gogle.com/?q=Summit+House,+Moi+Avenue,+Nairobi" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-blue-900 font-medium hover:underline"

@@ -47,20 +47,15 @@ function ContactContent() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex gap-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-900 px-6 py-3 rounded-lg font-medium"
-              >
-                Request a Quote
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-medium"
-              >
-                Call Now
-              </motion.button>
+              <a href="tel:+254725745922">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-medium"
+                >
+                  Call Now
+                </motion.button>
+              </a>
             </motion.div>
           </div>
         </div>

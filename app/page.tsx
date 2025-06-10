@@ -13,27 +13,40 @@ import {
   FiTrendingUp,
   FiDollarSign
 } from 'react-icons/fi';
-import { SERVICES, PROJECTS } from './_utils/constants';
-import ProjectCard from './components/ProjectsCard';
+import { SERVICES } from './_utils/constants';
 
 export default function Home() {
   const heroSlides = [
     { 
-      image: '/images/image.png', 
+      image: '/images/Image11.png', 
       title: 'Engineering Excellence Since 2011',
       subtitle: 'Delivering innovative construction solutions across Africa'
     },
     { 
-      image: '/images/image.png', 
+      image: '/images/Image13.png', 
       title: '250+ Successful Projects Delivered',
       subtitle: 'From commercial buildings to infrastructure development'
     },
     { 
-      image: '/images/image.png', 
+      image: '/images/Image17.png', 
       title: 'NCA5 Certified Contractor',
       subtitle: 'Highest category certification for building works'
     },
   ];
+  
+  // Project slideshow images
+  const projectImages = [
+  '/images/Image10.png',
+  '/images/Image11.png',
+  '/images/Image12.png',
+  '/images/Image13.png',
+  '/images/Image14.png',
+  '/images/Image15.png',
+  '/images/Image16.png',
+  '/images/Image17.png',
+  '/images/Image18.png',
+  '/images/Image19.png',
+];
   
   const projectsRef = useRef(null);
   const aboutRef = useRef(null);
@@ -41,12 +54,24 @@ export default function Home() {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const [activeSlide, setActiveSlide] = useState(0);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveSlide(prev => (prev + 1) % heroSlides.length);
-  }, 5000);
-  return () => clearInterval(interval);
-}, [heroSlides.length]);
+  // For project slideshow
+  const [projectSlide, setProjectSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide(prev => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
+
+  // Project slideshow auto
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProjectSlide(prev => (prev + 1) % projectImages.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [projectImages.length]);
+
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -185,7 +210,7 @@ useEffect(() => {
             >
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
                 <Image 
-                  src="/images/image.png"
+                  src="/images/Image11.png"
                   alt="CEKOL Engineering Team"
                   width={800}
                   height={600}
@@ -304,12 +329,7 @@ useEffect(() => {
                   <p className="text-gray-600 leading-relaxed mb-4">
                     {service.description}
                   </p>
-                  <div className="flex items-center text-amber-600 font-medium">
-                    <span>Learn More</span>
-                    <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                
                 </div>
               </motion.div>
             ))}
@@ -380,7 +400,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Featured Projects */}
+      {/* Featured Projects with Slideshow */}
       <section ref={projectsRef} className="relative py-20 bg-white overflow-hidden">
         <motion.div 
           style={{ rotate }}
@@ -402,23 +422,35 @@ useEffect(() => {
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {PROJECTS.map((project, index) => (
-              <ProjectCard
-                key={index}
-                title={project.title}
-                value={project.value}
-                location={project.location}
-                description={project.description}
-              />
-            ))}
+          {/* Project Images Slideshow */}
+          <div className="relative max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-xl mb-12">
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={projectImages[projectSlide]}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.03 }}
+                transition={{ duration: 0.7 }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image 
+                  src={projectImages[projectSlide]}
+                  alt={`Featured Project ${projectSlide + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+            
           </div>
 
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="mt-8 text-center"
           >
             <Link href="/projects">
               <button 

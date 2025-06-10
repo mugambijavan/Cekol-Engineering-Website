@@ -1,10 +1,13 @@
 'use client';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import { useRef, useState, useEffect } from 'react';
 import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp, FiDownload, FiX } from 'react-icons/fi';
 
 const AboutPage = () => {
+    const router = useRouter();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const [activeSlide, setActiveSlide] = useState(0);
@@ -16,7 +19,7 @@ const AboutPage = () => {
   // Changed from 80vh to ~48vh to reduce by 40%
   const heroHeight = 'h-[48vh]';
 
-  const bgImage = 'image.png';
+  const bgImage = 'Image13.png';
   const slides = [
     { 
       text: 'Engineering the Impossible, Making it Possible',
@@ -301,7 +304,7 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Image
-                  src="/images/image4.png"
+                  src="/images/Image15.png"
                   alt="Cekol Engineering Team"
                   width={800}
                   height={500}
@@ -721,20 +724,15 @@ const AboutPage = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.button 
-              className="px-8 py-3.5 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Request a Quote
-            </motion.button>
-            <motion.button 
-              className="px-8 py-3.5 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Our Team
-            </motion.button>
+              <motion.button 
+                className="px-8 py-3.5 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push('/contact')}
+              >
+                Request a Quote
+              </motion.button>
+            
           </motion.div>
         </div>
       </section>

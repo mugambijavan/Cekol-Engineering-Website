@@ -51,7 +51,6 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
     // Project slideshow images
   const projectImages = [
   '/images/Image10.png',
@@ -70,7 +69,7 @@ export default function Home() {
     useEffect(() => {
   const interval = setInterval(() => {
     setActiveSlide(prev => (prev + 1) % heroSlides.length);
-  }, 3000); // 3 seconds
+  }, 9000); // 3 seconds
   return () => clearInterval(interval);
 }, [heroSlides.length]);
 
@@ -79,27 +78,17 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setProjectSlide(prev => (prev + 1) % projectImages.length);
-    }, 3500);
+    }, 5000);
     return () => clearInterval(interval);
   }, [projectImages.length]);
 
-  useEffect(() => {
-    let interval: string | number | NodeJS.Timeout | undefined;
-    if (!isHovered) {
-      interval = setInterval(() => {
-        setActiveSlide(prev => (prev + 1) % heroSlides.length);
-      }, 5000);
-    }
-    return () => clearInterval(interval);
-  }, [heroSlides.length, isHovered]);
+
 
   return (
     <div className="overflow-hidden">
       {/* Enhanced Hero Section */}
       <section 
         className="relative h-screen overflow-hidden bg-black"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="absolute inset-0 z-0">
           {/* Animated grid background */}

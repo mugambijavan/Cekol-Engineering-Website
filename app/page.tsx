@@ -20,21 +20,39 @@ export default function Home() {
     { 
       image: '/images/Image11.png', 
       title: 'Engineering Excellence Since 2011',
-      subtitle: 'Delivering innovative construction solutions across Africa'
+      subtitle: 'Delivering innovative construction solutions across Africa',
+      stats: [
+        { value: '250+', label: 'Projects' },
+        { value: '98%', label: 'Satisfaction' }
+      ]
     },
     { 
       image: '/images/Image13.png', 
       title: '250+ Successful Projects Delivered',
-      subtitle: 'From commercial buildings to infrastructure development'
+      subtitle: 'From commercial buildings to infrastructure development',
+      stats: [
+        { value: '15+', label: 'Years' },
+        { value: 'NCA5', label: 'Certified' }
+      ]
     },
     { 
       image: '/images/Image17.png', 
       title: 'NCA5 Certified Contractor',
-      subtitle: 'Highest category certification for building works'
+      subtitle: 'Highest category certification for building works',
+      stats: [
+        { value: '50+', label: 'Engineers' },
+        { value: '24/7', label: 'Support' }
+      ]
     },
   ];
   
-  // Project slideshow images
+  const projectsRef = useRef(null);
+  const aboutRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+    // Project slideshow images
   const projectImages = [
   '/images/Image10.png',
   '/images/Image11.png',
@@ -47,22 +65,15 @@ export default function Home() {
   '/images/Image18.png',
   '/images/Image19.png',
 ];
-  
-  const projectsRef = useRef(null);
-  const aboutRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const [activeSlide, setActiveSlide] = useState(0);
-
   // For project slideshow
   const [projectSlide, setProjectSlide] = useState(0);
+    useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveSlide(prev => (prev + 1) % heroSlides.length);
+  }, 3000); // 3 seconds
+  return () => clearInterval(interval);
+}, [heroSlides.length]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide(prev => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [heroSlides.length]);
 
   // Project slideshow auto
   useEffect(() => {
@@ -72,91 +83,348 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [projectImages.length]);
 
+  useEffect(() => {
+    let interval: string | number | NodeJS.Timeout | undefined;
+    if (!isHovered) {
+      interval = setInterval(() => {
+        setActiveSlide(prev => (prev + 1) % heroSlides.length);
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [heroSlides.length, isHovered]);
+
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative h-screen">
-        <AnimatePresence mode='wait'>
-          {heroSlides.map((slide, index) => (
-            activeSlide === index && (
+      {/* Enhanced Hero Section */}
+      <section 
+        className="relative h-screen overflow-hidden bg-black"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="absolute inset-0 z-0">
+          {/* Animated grid background */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="grid grid-cols-12 grid-rows-6 h-full w-full">
+              {Array.from({ length: 72 }).map((_, i) => (
+                <motion.div 
+                  key={i}
+                  className="border border-gray-700"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ 
+                    duration: 1, 
+                    delay: i * 0.01,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    repeatDelay: 3
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Floating construction icons */}
+          <motion.div 
+            className="absolute top-20 right-20"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          >
+            <FiAward className="text-amber-500 text-4xl opacity-50" />
+          </motion.div>
+          
+          <motion.div 
+            className="absolute bottom-40 left-24"
+            initial={{ x: -100 }}
+            animate={{ x: 0 }}
+            transition={{ 
+              duration: 12, 
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          >
+            <FiShield className="text-amber-500 text-4xl opacity-50" />
+          </motion.div>
+          
+          <motion.div 
+            className="absolute top-1/3 left-1/4"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              duration: 15, 
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          >
+            <FiCheckCircle className="text-amber-500 text-4xl opacity-50" />
+          </motion.div>
+        </div>
+
+        <AnimatePresence initial={false} mode="wait">
+          {heroSlides.map((slide, index) =>
+            activeSlide === index ? (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2, ease: 'easeInOut' }}
+                className="absolute inset-0 z-0"
               >
-                {/* Background image with overlay */}
-                <div 
+                {/* Parallax background layers */}
+                <motion.div 
                   className="absolute inset-0"
-                  style={{ 
+                  style={{
                     backgroundImage: `url(${slide.image})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    backgroundPosition: 'center',
                   }}
+                  initial={{ scale: 1.1, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  transition={{ duration: 8, ease: 'easeOut' }}
                 >
-                  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-                </div>
-                
-                <motion.div 
-                  style={{ rotate, scale: 1 }}
-                  className="absolute inset-0"
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/30" />
+                </motion.div>
+
+                {/* Content */}
+                <motion.div
+                  className="absolute inset-0 z-10 flex items-center justify-center"
                 >
-                  <div className="container h-full flex items-center justify-center text-center px-4">
-                    <motion.div
-                      initial={{ y: 50, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                      className="text-white max-w-4xl"
-                    >
-                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
-                        {slide.title}
-                      </h1>
-                      <p className="text-xl md:text-2xl mb-8 text-gray-300">{slide.subtitle}</p>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/contact">
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+                  <div className="container px-4">
+                    <div className="flex flex-col lg:flex-row items-center gap-12">
+                      <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-white lg:w-1/2"
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8 }}
+                          className="mb-6"
+                        >
+                          <motion.span 
+                            className="text-amber-500 font-semibold tracking-widest uppercase text-sm"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
                           >
-                            Get a Quote
-                          </motion.button>
-                        </Link>
-                        <Link href="/about">
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-white hover:text-gray-900 transition-colors"
+                            Building the Future
+                          </motion.span>
+                          <motion.h1
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 leading-tight"
                           >
-                            Learn More
-                          </motion.button>
-                        </Link>
-                      </div>
-                    </motion.div>
+                            {slide.title.split(' ').map((word, i) => (
+                              <motion.span
+                                key={i}
+                                className="inline-block mr-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ 
+                                  duration: 0.5, 
+                                  delay: 0.5 + (i * 0.05),
+                                  type: "spring",
+                                  stiffness: 100
+                                }}
+                              >
+                                {word}
+                              </motion.span>
+                            ))}
+                          </motion.h1>
+                          
+                          <motion.p
+                            className="text-xl text-gray-300 mb-10 max-w-2xl"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1 }}
+                          >
+                            {slide.subtitle}
+                          </motion.p>
+                          
+                          <motion.div
+                            className="flex gap-6 mb-10"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2 }}
+                          >
+                            {slide.stats.map((stat, i) => (
+                              <div key={i} className="text-center">
+                                <div className="text-3xl font-bold text-amber-500">{stat.value}</div>
+                                <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
+                              </div>
+                            ))}
+                          </motion.div>
+                          
+                          <motion.div
+                            className="flex flex-col sm:flex-row gap-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.4 }}
+                          >
+                            <Link href="/contact">
+                              <motion.button
+                                whileHover={{ 
+                                  scale: 1.05,
+                                  backgroundColor: "#D97706"
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                                className="relative overflow-hidden group bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors flex items-center gap-2"
+                              >
+                                <span>Get a Quote</span>
+                                <motion.span
+                                  initial={{ x: -10, opacity: 0 }}
+                                  animate={{ x: 0, opacity: 1 }}
+                                  transition={{ delay: 1.6 }}
+                                >
+                                  &rarr;
+                                </motion.span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                              </motion.button>
+                            </Link>
+                            <Link href="/projects">
+                              <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-white/10 transition-colors"
+                              >
+                                View Projects
+                              </motion.button>
+                            </Link>
+                          </motion.div>
+                        </motion.div>
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="lg:w-1/2 relative"
+                      >
+                        <div className="relative aspect-video bg-gray-900/50 border-2 border-amber-500/30 rounded-xl overflow-hidden shadow-2xl">
+                          <motion.div
+                            className="absolute inset-0"
+                            style={{
+                              backgroundImage: `url(${slide.image})`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                            }}
+                            initial={{ scale: 1.1 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 8, ease: 'easeOut' }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <motion.h3 
+                              className="text-white text-xl font-semibold"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 1 }}
+                            >
+                              Featured Project
+                            </motion.h3>
+                            <motion.p 
+                              className="text-amber-300"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 1.2 }}
+                            >
+                              Modern Commercial Complex
+                            </motion.p>
+                          </div>
+                          
+                          {/* Animated construction elements */}
+                          <motion.div 
+                            className="absolute top-6 right-6 bg-amber-500 text-black px-3 py-1 rounded-full text-sm font-bold"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ 
+                              delay: 1.4,
+                              type: "spring"
+                            }}
+                          >
+                            NCA5 Certified
+                          </motion.div>
+                          
+                          <motion.div 
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                            initial={{ scale: 0, rotate: -30 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ 
+                              delay: 1.6,
+                              type: "spring",
+                              stiffness: 200
+                            }}
+                          >
+                            <div className="bg-amber-500/80 w-16 h-16 rounded-full flex items-center justify-center">
+                              <FiAward className="text-white text-2xl" />
+                            </div>
+                          </motion.div>
+                        </div>
+                        
+                        {/* Floating elements */}
+                        <motion.div
+                          className="absolute -top-6 -left-6 bg-gray-900 border border-amber-500/30 p-4 rounded-lg shadow-lg"
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1.8 }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <FiClock className="text-amber-500" />
+                            <span className="text-white text-sm">On-time Delivery</span>
+                          </div>
+                        </motion.div>
+                        
+                        <motion.div
+                          className="absolute -bottom-6 -right-6 bg-gray-900 border border-amber-500/30 p-4 rounded-lg shadow-lg"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 2 }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <FiDollarSign className="text-amber-500" />
+                            <span className="text-white text-sm">Cost Efficiency</span>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
-            )
-          ))}
+            ) : null
+          )}
         </AnimatePresence>
-
-        {/* Slide Navigation */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
-          {heroSlides.map((_, index) => (
-            <motion.button
-              key={index}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setActiveSlide(index)}
-              className={`w-3 h-3 rounded-full ${
-                activeSlide === index ? 'bg-white' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+        
+        
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.5 }}
+        >
+          <span className="text-gray-300 text-sm mb-2">Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+          >
+            <div className="w-8 h-12 rounded-full border-2 border-amber-500 flex justify-center p-1">
+              <motion.div 
+                className="w-2 h-2 bg-amber-500 rounded-full"
+                animate={{ y: [0, 15, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+              />
+            </div>
+          </motion.div>
+        </motion.div>
       </section>
+
+
 
       {/* Stats Section */}
       <motion.section 

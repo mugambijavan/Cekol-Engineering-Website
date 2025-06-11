@@ -11,7 +11,7 @@ type HeroSectionProps = {
 export default function HeroSection({ 
   title, 
   subtitle,
-  bgImage = "/images/image.png",
+  bgImage = "/images/image12.png",
   variant = 'services'
 }: HeroSectionProps) {
   // Variant-specific configurations

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { useRef, useState, useEffect } from 'react';
-import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp, FiDownload, FiX } from 'react-icons/fi';
+import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp, FiDownload, FiX, FiLoader } from 'react-icons/fi';
 
 const AboutPage = () => {
     const router = useRouter();
@@ -126,56 +126,79 @@ const AboutPage = () => {
     <div ref={ref} className="overflow-hidden bg-white">
       {/* Company Profile Modal */}
       <AnimatePresence>
-        {isProfileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+  {isProfileOpen && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-black/80 backdrop-blur-sm"
+      onClick={() => setIsProfileOpen(false)}
+    >
+      <motion.div
+        initial={{ scale: 0.8, y: 20, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.9, y: 20, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="bg-white rounded-xl w-full max-w-4xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center p-4 border-b">
+          <h3 className="text-xl font-bold text-gray-900">Company Profile</h3>
+          <motion.button 
+            whileHover={{ rotate: 90, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setIsProfileOpen(false)}
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center p-4 border-b">
-                <h3 className="text-xl font-bold text-gray-900">Company Profile</h3>
-                <button 
-                  onClick={() => setIsProfileOpen(false)}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                >
-                  <FiX className="w-6 h-6 text-gray-500" />
-                </button>
-              </div>
-              
-              <div className="flex-1 overflow-auto">
-                {/* PDF Viewer */}
-                <div className="w-full h-[70vh]">
-                  <iframe 
-                    src="/doc/company-profile.pdf" 
-                    className="w-full h-full"
-                    frameBorder="0"
-                  />
-                </div>
-              </div>
-              
-              <div className="p-4 border-t flex justify-end">
-                <a 
-                  href="/doc/company-profile.pdf" 
-                  download="Cekol-Engineering-Profile.pdf"
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors"
-                >
-                  <FiDownload className="w-5 h-5" />
-                  Download PDF
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <FiX className="w-6 h-6 text-gray-500" />
+          </motion.button>
+        </div>
+        
+        <div className="flex-1 overflow-auto">
+          {/* PDF Viewer with loading state */}
+          <div className="w-full h-[65vh] relative">
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="text-blue-600"
+              >
+                <FiLoader className="w-12 h-12" />
+              </motion.div>
+            </div>
+            
+            <iframe 
+              src="/doc/company-profile.pdf" 
+              className="w-full h-full"
+              frameBorder="0"
+              onLoad={() => {
+                const loader = document.querySelector('.absolute.inset-0');
+                if (loader) loader.classList.add('hidden');
+              }}
+            />
+          </div>
+        </div>
+        
+        <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="text-gray-600 text-sm">
+            <p>File size: 2.4MB • Last updated: June 15, 2023</p>
+          </div>
+          
+          <motion.a 
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            href="/doc/company-profile.pdf" 
+            download="Cekol-Engineering-Profile.pdf"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
+          >
+            <FiDownload className="w-5 h-5" />
+            Download PDF
+          </motion.a>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
       {/* Hero Section */}
       <section className={`relative ${heroHeight} overflow-hidden`}>

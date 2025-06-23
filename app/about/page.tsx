@@ -306,15 +306,7 @@ const AboutPage = () => {
                   />
                 </div>
                 
-                {!pdfLoading && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute bottom-4 right-4 bg-white/90 px-3 py-1 rounded-lg shadow-sm text-sm"
-                  >
-                    Page 1 of 12
-                  </motion.div>
-                )}
+                
               </div>
               
               <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">

@@ -2,16 +2,22 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
 import { useRef, useState, useEffect } from 'react';
 import { FiUsers, FiCheckCircle, FiDollarSign, FiActivity, FiAward, FiGlobe, FiShield, FiTrendingUp, FiDownload, FiX, FiLoader } from 'react-icons/fi';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutPage = () => {
-    const router = useRouter();
+  const router = useRouter();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const [activeSlide, setActiveSlide] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const rotateX = useTransform(scrollYProgress, [0, 1], [0, -3]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0]);
@@ -104,6 +110,117 @@ const AboutPage = () => {
     }
   ];
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Initialize GSAP animations
+  useEffect(() => {
+    // Hero text animation
+    gsap.from('.hero-text', {
+      opacity: 0,
+      y: 40,
+      duration: 1.5,
+      delay: 0.5,
+      stagger: 0.2
+    });
+
+    // Stats animation
+    gsap.from('.stat-item', {
+      opacity: 0,
+      scale: 0.8,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.15,
+      delay: 1.2,
+      ease: "back.out(1.7)"
+    });
+
+    // Section title animations
+    (gsap.utils.toArray('section') as HTMLElement[]).forEach((section) => {
+      const heading = section.querySelector('h2');
+      const underline = section.querySelector('.section-underline');
+      
+      if (heading) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 80%",
+          onEnter: () => {
+            gsap.fromTo(heading, 
+              { y: 40, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.8 }
+            );
+          }
+        });
+      }
+      
+      if (underline) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 80%",
+          onEnter: () => {
+            gsap.fromTo(underline, 
+              { width: 0 },
+              { width: "120px", duration: 1, ease: "power2.out" }
+            );
+          }
+        });
+      }
+    });
+
+    // Card animations
+    (gsap.utils.toArray('.gsap-card') as HTMLElement[]).forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 90%",
+        onEnter: () => {
+          gsap.fromTo(card, 
+            { opacity: 0, y: 60 },
+            { 
+              opacity: 1, 
+              y: 0, 
+              duration: 0.8, 
+              delay: index * 0.1,
+              ease: "back.out(1.2)" 
+            }
+          );
+        }
+      });
+    });
+
+    // Timeline animations
+    (gsap.utils.toArray('.timeline-item') as HTMLElement[]).forEach((item, index: number) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: "top 85%",
+        onEnter: () => {
+          gsap.fromTo(item, 
+            { opacity: 0, y: 60 },
+            { 
+              opacity: 1, 
+              y: 0, 
+              duration: 0.8, 
+              delay: index * 0.15,
+              ease: "power2.out" 
+            }
+          );
+        }
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide(prev => (prev + 1) % slides.length);
@@ -114,6 +231,7 @@ const AboutPage = () => {
   useEffect(() => {
     if (isProfileOpen) {
       document.body.style.overflow = 'hidden';
+      setPdfLoading(true);
     } else {
       document.body.style.overflow = 'auto';
     }
@@ -124,81 +242,101 @@ const AboutPage = () => {
 
   return (
     <div ref={ref} className="overflow-hidden bg-white">
-      {/* Company Profile Modal */}
+      {/* Enhanced PDF Modal */}
       <AnimatePresence>
-  {isProfileOpen && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-black/80 backdrop-blur-sm"
-      onClick={() => setIsProfileOpen(false)}
-    >
-      <motion.div
-        initial={{ scale: 0.8, y: 20, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        exit={{ scale: 0.9, y: 20, opacity: 0 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white rounded-xl w-full max-w-4xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-xl font-bold text-gray-900">Company Profile</h3>
-          <motion.button 
-            whileHover={{ rotate: 90, scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+        {isProfileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-black/80 backdrop-blur-sm"
             onClick={() => setIsProfileOpen(false)}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <FiX className="w-6 h-6 text-gray-500" />
-          </motion.button>
-        </div>
-        
-        <div className="flex-1 overflow-auto">
-          {/* PDF Viewer with loading state */}
-          <div className="w-full h-[65vh] relative">
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="text-blue-600"
-              >
-                <FiLoader className="w-12 h-12" />
-              </motion.div>
-            </div>
-            
-            <iframe 
-              src="/doc/company-profile.pdf" 
-              className="w-full h-full"
-              frameBorder="0"
-              onLoad={() => {
-                const loader = document.querySelector('.absolute.inset-0');
-                if (loader) loader.classList.add('hidden');
-              }}
-            />
-          </div>
-        </div>
-        
-        <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="text-gray-600 text-sm">
-            <p>File size: 2.4MB • Last updated: June 15, 2023</p>
-          </div>
-          
-          <motion.a 
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            href="/doc/company-profile.pdf" 
-            download="Cekol-Engineering-Profile.pdf"
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
-          >
-            <FiDownload className="w-5 h-5" />
-            Download PDF
-          </motion.a>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+            <motion.div
+              initial={{ scale: 0.8, y: isMobile ? 100 : 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: isMobile ? 100 : 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              className={`bg-white rounded-xl w-full max-w-4xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl ${
+                isMobile ? 'rounded-b-none' : ''
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center p-4 border-b">
+                <h3 className="text-xl font-bold text-gray-900">Company Profile</h3>
+                <motion.button 
+                  whileHover={{ rotate: 90, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsProfileOpen(false)}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <FiX className="w-6 h-6 text-gray-500" />
+                </motion.button>
+              </div>
+              
+              {/* PDF Container with improved mobile scrolling */}
+              <div className="flex-1 overflow-hidden relative">
+                {pdfLoading && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 z-10"
+                  >
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="text-blue-600"
+                    >
+                      <FiLoader className="w-12 h-12" />
+                    </motion.div>
+                    <p className="mt-4 text-gray-600">Loading document...</p>
+                  </motion.div>
+                )}
+                
+                <div className="w-full h-full overflow-auto touch-pan-y">
+                  <iframe 
+                    src="/doc/company-profile.pdf" 
+                    className={`w-full h-full min-h-[500px] ${pdfLoading ? 'opacity-0' : 'opacity-100'}`}
+                    frameBorder="0"
+                    onLoad={() => setPdfLoading(false)}
+                    style={{ 
+                      pointerEvents: pdfLoading ? 'none' : 'auto',
+                      WebkitOverflowScrolling: 'touch'
+                    }}
+                  />
+                </div>
+                
+                {!pdfLoading && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute bottom-4 right-4 bg-white/90 px-3 py-1 rounded-lg shadow-sm text-sm"
+                  >
+                    Page 1 of 12
+                  </motion.div>
+                )}
+              </div>
+              
+              <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div className="text-gray-600 text-sm">
+                  <p>File size: 2.4MB • Last updated: June 2025</p>
+                </div>
+                
+                <motion.a 
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="/doc/company-profile.pdf" 
+                  download="Cekol-Engineering-Profile.pdf"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
+                >
+                  <FiDownload className="w-5 h-5" />
+                  Download PDF
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className={`relative ${heroHeight} overflow-hidden`}>
@@ -215,100 +353,49 @@ const AboutPage = () => {
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 pointer-events-none" />
         {/* Slide text and stats */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-xs px-4">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
           <AnimatePresence mode="wait">
             {slides.map((slide, index) =>
               activeSlide === index && (
-                <motion.div
+                <div
                   key={index}
                   className="w-full max-w-4xl mx-auto"
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -60 }}
-                  transition={{ duration: 1.0, ease: 'easeInOut' }}
                 >
-                  <motion.h1 
-                    className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white text-xs drop-shadow-lg"
-                    initial={{ letterSpacing: '0em' }}
-                    animate={{ letterSpacing: '0.02em' }}
-                    transition={{ duration: 1.5, delay: 0.3 }}
-                  >
+                  <h1 className="hero-text text-4xl md:text-6xl font-bold mb-8 leading-tight text-white drop-shadow-lg">
                     {slide.text}
-                  </motion.h1>
-                  <motion.div 
-                    className="flex flex-wrap justify-center gap-4 mt-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                  >
+                  </h1>
+                  <div className="flex flex-wrap justify-center gap-4 mt-8">
                     {slide.stats.map((stat, idx) => (
-                      <motion.div
+                      <div
                         key={idx}
-                        className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white shadow-md"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: idx * 0.15, type: 'spring', stiffness: 100, damping: 10 }}
-                        whileHover={{ scale: 1.05 }}
+                        className="stat-item px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white shadow-md"
                       >
                         <span className="font-medium">{stat}</span>
-                      </motion.div>
+                      </div>
                     ))}
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               )
             )}
           </AnimatePresence>
         </div>
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-        </motion.div>
       </section>
 
       {/* Company Introduction */}
       <section className="py-24 bg-white">
         <div className="container max-w-7xl mx-auto px-6">
-          <motion.div
-            className="flex flex-col md:flex-row gap-12 items-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-                initial={{ x: -50 }}
-                whileInView={{ x: 0 }}
-                transition={{ delay: 0.1 }}
-              >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 About <span className="text-blue-700">Cekol Engineering</span>
-              </motion.h2>
-              <motion.p 
-                className="text-lg text-gray-600 mb-6 leading-relaxed"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Established in 2011 and incorporated in 2019, Cekol Engineering Limited has grown into a leading civil engineering and construction firm operating across Africa. Our team of 112+ professionals delivers comprehensive engineering solutions with expertise in both civil and electrical engineering.
-              </motion.p>
-              <motion.p 
-                className="text-lg text-gray-600 mb-8 leading-relaxed"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 We specialize in creating sustainable infrastructure that enhances communities while maintaining the highest standards of quality assurance, service delivery, and safety compliance.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
+              </p>
+              <div>
                 <motion.button 
                   className="px-8 py-3.5 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors"
                   whileHover={{ scale: 1.05 }}
@@ -317,15 +404,10 @@ const AboutPage = () => {
                 >
                   View Company Profile
                 </motion.button>
-              </motion.div>
+              </div>
             </div>
-            <div className="md:w-1/2">
-              <motion.div 
-                className="bg-gray-100 rounded-2xl overflow-hidden shadow-xl"
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+            <div className="md:w-1/2 gsap-card">
+              <div className="bg-gray-100 rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/Image15.png"
                   alt="Cekol Engineering Team"
@@ -334,9 +416,9 @@ const AboutPage = () => {
                   className="w-full h-auto object-cover"
                   priority
                 />
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -344,20 +426,10 @@ const AboutPage = () => {
       <section className="py-24 bg-slate-50">
         <div className="container max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Our Corporate Journey
-            </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '120px' }}
-              className="h-1 bg-blue-700 mx-auto mt-6"
-              transition={{ duration: 0.8 }}
-            />
+            </h2>
+            <div className="section-underline h-1 bg-blue-700 mx-auto mt-6 w-0" />
           </div>
 
           <div className="relative">
@@ -396,26 +468,22 @@ const AboutPage = () => {
                   icon: <FiGlobe className="w-6 h-6 text-blue-700" />
                 },
               ].map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.15 }}
-                  viewport={{ once: true }}
+                  className={`timeline-item relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}
                 >
                   <div className="flex-shrink-0 w-24 h-24 rounded-full bg-blue-700 text-white flex items-center justify-center text-2xl font-bold z-10 shadow-lg">
                     {item.year}
                   </div>
                   
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} p-8 bg-white rounded-2xl shadow-lg`}>
+                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} p-8 bg-white rounded-2xl shadow-lg gsap-card`}>
                     <div className="flex items-center md:justify-end gap-4 mb-4">
                       {item.icon}
                       <h3 className="text-2xl font-bold text-gray-900">{item.event}</h3>
                     </div>
                     <p className="text-gray-600">{item.detail}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -426,27 +494,13 @@ const AboutPage = () => {
       <section className="py-24 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
         <div className="container max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.7 }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Financial Performance
-            </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '200px' }}
-              className="h-1 bg-emerald-400 mx-auto"
-            />
-            <motion.p
-              className="max-w-2xl mx-auto mt-6 text-blue-200"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
+            </h2>
+            <div className="section-underline h-1 bg-emerald-400 mx-auto w-0" />
+            <p className="max-w-2xl mx-auto mt-6 text-blue-200">
               Audited financial statements prepared by Matuku & Associates CPA(K)
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -473,49 +527,35 @@ const AboutPage = () => {
                 detail: "After tax and administrative expenses"
               }
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all"
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ y: -5 }}
-                viewport={{ once: true }}
+                className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all gsap-card"
               >
                 <div className="text-4xl mb-6 text-emerald-400">{item.icon}</div>
                 <div className="text-3xl font-bold mb-2">{item.value}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-emerald-300 mb-4">{item.growth}</p>
                 <p className="text-blue-200 text-sm">{item.detail}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            className="mt-20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
+          <div className="mt-20">
             <h3 className="text-2xl font-bold mb-8 text-center">Key Projects</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {keyProjects.map((project, index) => (
-                <motion.div
+                <div
                   key={index}
-                  className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all"
-                  initial={{ y: 50, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                  whileHover={{ y: -5 }}
+                  className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all gsap-card"
                 >
                   <div className="text-emerald-400 font-bold text-lg mb-1">{project.value}</div>
                   <h4 className="text-xl font-bold mb-2">{project.title}</h4>
                   <div className="text-blue-300 text-sm mb-3">{project.year} • {project.role}</div>
                   <p className="text-blue-200 text-sm">{project.scope}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -523,19 +563,10 @@ const AboutPage = () => {
       <section className="py-24 bg-white">
         <div className="container max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.7 }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Operational Excellence
-            </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '150px' }}
-              className="h-1 bg-blue-700 mx-auto"
-            />
+            </h2>
+            <div className="section-underline h-1 bg-blue-700 mx-auto w-0" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -561,19 +592,14 @@ const AboutPage = () => {
                 icon: <FiGlobe className="w-8 h-8 text-blue-700" />
               }
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="p-8 bg-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 transition-all"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                viewport={{ once: true }}
+                className="p-8 bg-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 transition-all gsap-card"
               >
                 <div className="text-blue-700 mb-4">{item.icon}</div>
                 <div className="text-xl font-bold text-gray-900 mb-4">{item.title}</div>
                 <p className="text-gray-600">{item.content}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -582,33 +608,19 @@ const AboutPage = () => {
       {/* Certifications Section */}
       <section className="py-24 bg-slate-50">
         <div className="container max-w-7xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Accreditations</h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '120px' }}
-              className="h-1 bg-blue-700 mx-auto mb-6"
-            />
+            <div className="section-underline h-1 bg-blue-700 mx-auto mb-6 w-0" />
             <p className="max-w-2xl mx-auto mt-6 text-gray-600">
               Certified compliance with all regulatory requirements and industry standards
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100"
-                initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                whileInView={{ scale: 1, opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, type: 'spring', stiffness: 120 }}
-                whileHover={{ y: -8 }}
-                viewport={{ once: true }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 gsap-card"
               >
                 <div className="flex items-start mb-4 gap-4">
                   <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -625,7 +637,7 @@ const AboutPage = () => {
                 <div className="text-xs text-blue-600 font-medium">
                   Valid: {cert.year} • Registration No: CER/{cert.year.slice(2,4)}-{index+1000}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -635,28 +647,14 @@ const AboutPage = () => {
       <section className="py-24 bg-white">
         <div className="container max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.7 }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Leadership & Governance
-            </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '180px' }}
-              className="h-1 bg-blue-700 mx-auto"
-            />
+            </h2>
+            <div className="section-underline h-1 bg-blue-700 mx-auto w-0" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              className="bg-slate-50 p-8 rounded-2xl shadow-sm"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="bg-slate-50 p-8 rounded-2xl shadow-sm gsap-card">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Management Structure</h3>
               <div className="space-y-6">
                 {[
@@ -666,12 +664,9 @@ const AboutPage = () => {
                   { role: "Project Manager", name: "Eng. Methu" },
                   { role: "HSE Engineer", name: "Safety Compliance Officer" },
                 ].map((person, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="flex items-center gap-4"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
                   >
                     <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">
                       {person.name.charAt(0)}
@@ -680,17 +675,12 @@ const AboutPage = () => {
                       <div className="font-medium text-gray-900">{person.role}</div>
                       <div className="text-gray-600">{person.name}</div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="bg-slate-50 p-8 rounded-2xl shadow-sm"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="bg-slate-50 p-8 rounded-2xl shadow-sm gsap-card">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Values</h3>
               <div className="space-y-6">
                 {[
@@ -700,12 +690,9 @@ const AboutPage = () => {
                   { value: "Sustainability", description: "Environmental protection through efficient practices" },
                   { value: "Integrity", description: "Ethical business practices and transparency" },
                 ].map((item, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="flex gap-4"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
                   >
                     <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-700">
                       {index + 1}
@@ -714,10 +701,10 @@ const AboutPage = () => {
                       <div className="font-bold text-gray-900">{item.value}</div>
                       <div className="text-gray-600">{item.description}</div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -725,38 +712,22 @@ const AboutPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-700 to-blue-900 text-white">
         <div className="container max-w-5xl mx-auto px-6 text-center">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Partner With Kenya&apos;s Leading Engineering Firm
-          </motion.h2>
-          <motion.p
-            className="text-xl mb-8 max-w-3xl mx-auto text-blue-100"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto text-blue-100">
             Contact us today to discuss your next construction or engineering project
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-              <motion.button 
-                className="px-8 py-3.5 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => router.push('/contact')}
-              >
-                Request a Quote
-              </motion.button>
-            
-          </motion.div>
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.button 
+              className="px-8 py-3.5 bg-white text-blue-700 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push('/contact')}
+            >
+              Request a Quote
+            </motion.button>
+          </div>
         </div>
       </section>
     </div>

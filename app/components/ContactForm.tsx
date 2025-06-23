@@ -47,7 +47,7 @@ export default function ContactForm({ isQuote = false }) {
         method: "POST",
         body: data
       });
-
+        
       const result = await response.json();
 
       if (result.success) {

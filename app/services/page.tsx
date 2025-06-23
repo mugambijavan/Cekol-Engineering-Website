@@ -4,53 +4,60 @@ import { useState } from 'react';
 import HeroSection from '../components/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import ServiceCard from './components/ServiceCard';
+import Image from 'next/image';
 
 export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   
-  // Services data
+  // Services data with updated descriptions and images
   const SERVICES = [
     {
       id: 1,
       icon: '🏗️',
       title: 'Building Construction',
-      description: 'Commercial buildings, schools, hospitals, hotels, and industrial complexes delivered to highest standards.',
-      caseStudies: ['Shanzu Mixed-Use Complex', 'Nyali Heights Apartments', 'Mombasa International School']
+      description: 'We undertake construction projects across various sectors, including commercial buildings, schools, hospitals, hotels, and industrial complexes.',
+      caseStudies: ['Shanzu Mixed-Use Complex', 'Nyali Heights Apartments', 'Mombasa International School'],
+      image: '/images/service1.jpeg'
     },
     {
       id: 2,
-      icon: '🛣️',
-      title: 'Road Tarmacking',
-      description: 'Innovative solutions for all road types including urban, rural, parking lots and courts.',
-      caseStudies: ['Mombasa-Malindi Highway', 'Nairobi Industrial Park Roads', 'Kisumu Lakefront Development']
+      icon: '🚜',
+      title: 'Grading Works',
+      description: 'Private and commercial earthwork and land grading services nationwide, handling everything from digging footings to grading roadways.',
+      caseStudies: ['Vipingo Ridge Development', 'Two Rivers Site Preparation', 'Konza Techno City'],
+      image: '/images/service2.jpeg'
     },
     {
       id: 3,
-      icon: '💧',
-      title: 'Water & Drainage',
-      description: 'Complete water/sanitary line installations with precision equipment.',
-      caseStudies: ['Kwale Water Supply Project', 'Mombasa Sewerage System', 'Tana River Irrigation Network']
+      icon: '🪨',
+      title: 'Graveling Works',
+      description: 'Comprehensive road gravelling solutions with appropriate construction methods and materials for all road types.',
+      caseStudies: ['Coastal Highway Gravelling', 'Northern Kenya Access Roads', 'Rural Connectivity Project'],
+      image: '/images/service3.jpeg'
     },
     {
       id: 4,
-      icon: '🚜',
-      title: 'Grading Works',
-      description: 'Nationwide earthwork and land grading for private/commercial projects.',
-      caseStudies: ['Vipingo Ridge Development', 'Two Rivers Site Preparation', 'Konza Techno City']
+      icon: '💧',
+      title: 'Water & Drainage Works',
+      description: 'Complete water and sanitary line installations with precision equipment for municipalities and commercial projects.',
+      caseStudies: ['Kwale Water Supply Project', 'Mombasa Sewerage System', 'Tana River Irrigation Network'],
+      image: '/images/service4.jpg'
     },
     {
       id: 5,
       icon: '🔄',
       title: 'Culvert Installation',
-      description: 'Expert design and installation of drainage culverts.',
-      caseStudies: ['Nairobi Expressway Drainage', 'Thika Highway Expansion', 'Coastal Flood Management']
+      description: 'Expert design and installation of drainage culverts for effective flood management and infrastructure development.',
+      caseStudies: ['Nairobi Expressway Drainage', 'Thika Highway Expansion', 'Coastal Flood Management'],
+      image: '/images/service5.jpeg'
     },
     {
       id: 6,
-      icon: '⚡',
-      title: 'Electrical Engineering',
-      description: 'Professional electrical services for residential and commercial projects.',
-      caseStudies: ['Hilton Hotel Mombasa', 'Westgate Mall Power Systems', 'Kenyatta University Upgrade']
+      icon: '🛣️',
+      title: 'Road Tarmacking',
+      description: 'Innovative tarmacking solutions for all road types including urban, rural, parking lots and courts.',
+      caseStudies: ['Mombasa-Malindi Highway', 'Nairobi Industrial Park Roads', 'Kisumu Lakefront Development'],
+      image: '/images/service6.jpeg'
     }
   ];
 
@@ -149,23 +156,37 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-75 backdrop-blur-sm"
+            className="fixed inset-0 z-50 overflow-y-auto"
           >
+            {/* Blurred background with service image */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-black">
+                <Image
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="opacity-80 blur-lg scale-125"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90"></div>
+            </div>
+            
+            <div 
+              className="fixed inset-0"
+              onClick={closeService}
+            ></div>
+            
             <div className="min-h-screen px-4 flex items-center justify-center">
-              <div 
-                className="fixed inset-0"
-                onClick={closeService}
-              ></div>
-              
               <motion.div
                 initial={{ scale: 0.9, y: 50 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+                className="relative bg-white/95 backdrop-blur-sm rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-white/20"
               >
                 <button
                   onClick={closeService}
-                  className="absolute top-4 right-4 z-10 bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
+                  className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition-colors shadow-lg"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -202,9 +223,11 @@ export default function ServicesPage() {
                           transition={{ delay: 0.1 * index }}
                           className="flex items-start"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
+                          <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
                           <span className="text-gray-700 text-lg">{study}</span>
                         </motion.li>
                       ))}
@@ -232,11 +255,12 @@ export default function ServicesPage() {
   );
 }
 
-// Define service type
+// Define service type with image property
 type Service = {
   id: number;
   icon: string;
   title: string;
   description: string;
   caseStudies: string[];
+  image: string;
 };

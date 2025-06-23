@@ -2,6 +2,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Service {
   id: number;
@@ -9,6 +10,7 @@ interface Service {
   title: string;
   description: string;
   caseStudies: string[];
+  image: string;
 }
 
 interface ServiceCardProps {
@@ -22,15 +24,29 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col"
+      className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col group"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="p-6 flex-1">
-        <div className="flex items-center mb-4">
-          <div className="text-3xl mr-3">{service.icon}</div>
-          <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
+      {/* Service image */}
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={service.image}
+          alt={service.title}
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="absolute bottom-4 left-4 text-3xl text-white">
+          {service.icon}
         </div>
+      </div>
+      
+      <div className="p-6 flex-1">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">
+          {service.title}
+        </h3>
         
         <p className="text-gray-700 mb-6">
           {service.description}

@@ -15,6 +15,17 @@ import {
 } from 'react-icons/fi';
 import { SERVICES } from './_utils/constants';
 
+// Color palette for construction theme
+const COLORS = {
+  primaryBg: "#0a2240",      // Deep construction blue
+  sectionBg: "#f5f6fa",      // Light concrete gray
+  dark: "#18181b",           // Charcoal for text/background
+  cta: "#f59e0b",            // Amber/Construction Yellow (use for CTAs, icons)
+  accent: "#ffbe3b",         // Lighter yellow for hover/accents
+  white: "#fff",
+  border: "#e0e3e7",         // Light border gray
+};
+
 export default function Home() {
   const heroSlides = [
     { 
@@ -51,28 +62,28 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const [activeSlide, setActiveSlide] = useState(0);
-    // Project slideshow images
+  // Project slideshow images
   const projectImages = [
-  '/images/Image10.png',
-  '/images/Image11.png',
-  '/images/Image12.png',
-  '/images/Image13.png',
-  '/images/Image14.png',
-  '/images/Image15.png',
-  '/images/Image16.png',
-  '/images/Image17.png',
-  '/images/Image18.png',
-  '/images/Image19.png',
-];
+    '/images/Image10.png',
+    '/images/Image11.png',
+    '/images/Image12.png',
+    '/images/Image13.png',
+    '/images/Image14.png',
+    '/images/Image15.png',
+    '/images/Image16.png',
+    '/images/Image17.png',
+    '/images/Image18.png',
+    '/images/Image19.png',
+  ];
   // For project slideshow
   const [projectSlide, setProjectSlide] = useState(0);
-    useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveSlide(prev => (prev + 1) % heroSlides.length);
-  }, 9000); // 3 seconds
-  return () => clearInterval(interval);
-}, [heroSlides.length]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide(prev => (prev + 1) % heroSlides.length);
+    }, 9000);
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
 
   // Project slideshow auto
   useEffect(() => {
@@ -82,22 +93,22 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [projectImages.length]);
 
-
-
   return (
     <div className="overflow-hidden">
-      {/* Enhanced Hero Section */}
+      {/* Hero Section */}
       <section 
-        className="relative h-screen overflow-hidden bg-black"
+        className="relative h-screen overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${COLORS.primaryBg} 80%, ${COLORS.dark} 100%)` }}
       >
         <div className="absolute inset-0 z-0">
           {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 opacity-10">
             <div className="grid grid-cols-12 grid-rows-6 h-full w-full">
               {Array.from({ length: 72 }).map((_, i) => (
                 <motion.div 
                   key={i}
-                  className="border border-gray-700"
+                  className="border"
+                  style={{ borderColor: COLORS.border }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ 
@@ -123,7 +134,7 @@ export default function Home() {
               repeatType: "reverse"
             }}
           >
-            <FiAward className="text-amber-500 text-4xl opacity-50" />
+            <FiAward style={{ color: COLORS.cta }} className="text-4xl opacity-50" />
           </motion.div>
           
           <motion.div 
@@ -136,7 +147,7 @@ export default function Home() {
               repeatType: "reverse"
             }}
           >
-            <FiShield className="text-amber-500 text-4xl opacity-50" />
+            <FiShield style={{ color: COLORS.cta }} className="text-4xl opacity-50" />
           </motion.div>
           
           <motion.div 
@@ -149,7 +160,7 @@ export default function Home() {
               repeatType: "reverse"
             }}
           >
-            <FiCheckCircle className="text-amber-500 text-4xl opacity-50" />
+            <FiCheckCircle style={{ color: COLORS.cta }} className="text-4xl opacity-50" />
           </motion.div>
         </div>
 
@@ -176,8 +187,12 @@ export default function Home() {
                   animate={{ scale: 1, y: 0 }}
                   transition={{ duration: 8, ease: 'easeOut' }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/30" />
+                  <div className="absolute inset-0" style={{
+                    background: "linear-gradient(to bottom, rgba(10,34,64,0.82) 0%, rgba(10,34,64,0.34) 60%, rgba(24,24,27,0.8) 100%)"
+                  }} />
+                  <div className="absolute inset-0" style={{
+                    background: "linear-gradient(to right, rgba(10,34,64,0.3), rgba(10,34,64,0.3))"
+                  }} />
                 </motion.div>
 
                 {/* Content */}
@@ -199,7 +214,8 @@ export default function Home() {
                           className="mb-6"
                         >
                           <motion.span 
-                            className="text-amber-500 font-semibold tracking-widest uppercase text-sm"
+                            className="font-semibold tracking-widest uppercase text-sm"
+                            style={{ color: COLORS.cta }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
@@ -228,7 +244,7 @@ export default function Home() {
                           </motion.h1>
                           
                           <motion.p
-                            className="text-xl text-gray-300 mb-10 max-w-2xl"
+                            className="text-xl text-gray-200 mb-10 max-w-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1 }}
@@ -244,8 +260,8 @@ export default function Home() {
                           >
                             {slide.stats.map((stat, i) => (
                               <div key={i} className="text-center">
-                                <div className="text-3xl font-bold text-amber-500">{stat.value}</div>
-                                <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
+                                <div className="text-3xl font-bold" style={{ color: COLORS.cta }}>{stat.value}</div>
+                                <div className="text-gray-300 text-sm mt-1">{stat.label}</div>
                               </div>
                             ))}
                           </motion.div>
@@ -260,27 +276,41 @@ export default function Home() {
                               <motion.button
                                 whileHover={{ 
                                   scale: 1.05,
-                                  backgroundColor: "#D97706"
+                                  backgroundColor: COLORS.accent
                                 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="relative overflow-hidden group bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors flex items-center gap-2"
+                                className="relative overflow-hidden group"
+                                style={{
+                                  background: COLORS.cta,
+                                  color: COLORS.white,
+                                  padding: "1rem 2rem",
+                                  borderRadius: "0.5rem",
+                                  fontWeight: 500,
+                                  fontSize: "1.125rem",
+                                  transition: "background 0.3s"
+                                }}
                               >
                                 <span>Get a Quote</span>
                                 <motion.span
                                   initial={{ x: -10, opacity: 0 }}
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: 1.6 }}
+                                  style={{ marginLeft: 8 }}
                                 >
                                   &rarr;
                                 </motion.span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
                               </motion.button>
                             </Link>
                             <Link href="/projects">
                               <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-white/10 transition-colors"
+                                className="border-2 px-8 py-4 rounded-lg font-medium text-lg transition-colors"
+                                style={{
+                                  background: "transparent",
+                                  borderColor: COLORS.white,
+                                  color: COLORS.white,
+                                }}
                               >
                                 View Projects
                               </motion.button>
@@ -295,7 +325,9 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.6 }}
                         className="lg:w-1/2 relative"
                       >
-                        <div className="relative aspect-video bg-gray-900/50 border-2 border-amber-500/30 rounded-xl overflow-hidden shadow-2xl">
+                        <div className="relative aspect-video bg-gray-900/50 border-2 rounded-xl overflow-hidden shadow-2xl"
+                          style={{ borderColor: COLORS.cta }}
+                        >
                           <motion.div
                             className="absolute inset-0"
                             style={{
@@ -318,7 +350,8 @@ export default function Home() {
                               Featured Project
                             </motion.h3>
                             <motion.p 
-                              className="text-amber-300"
+                              style={{ color: COLORS.cta }}
+                              className="font-bold"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 1.2 }}
@@ -329,7 +362,8 @@ export default function Home() {
                           
                           {/* Animated construction elements */}
                           <motion.div 
-                            className="absolute top-6 right-6 bg-amber-500 text-black px-3 py-1 rounded-full text-sm font-bold"
+                            className="absolute top-6 right-6 text-black px-3 py-1 rounded-full text-sm font-bold"
+                            style={{ background: COLORS.cta }}
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ 
@@ -350,7 +384,7 @@ export default function Home() {
                               stiffness: 200
                             }}
                           >
-                            <div className="bg-amber-500/80 w-16 h-16 rounded-full flex items-center justify-center">
+                            <div style={{ background: COLORS.cta + "CC" }} className="w-16 h-16 rounded-full flex items-center justify-center">
                               <FiAward className="text-white text-2xl" />
                             </div>
                           </motion.div>
@@ -358,25 +392,27 @@ export default function Home() {
                         
                         {/* Floating elements */}
                         <motion.div
-                          className="absolute -top-6 -left-6 bg-gray-900 border border-amber-500/30 p-4 rounded-lg shadow-lg"
+                          className="absolute -top-6 -left-6 bg-gray-900 p-4 rounded-lg shadow-lg border"
+                          style={{ borderColor: COLORS.cta + "4D" }}
                           initial={{ opacity: 0, y: -20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 1.8 }}
                         >
                           <div className="flex items-center gap-2">
-                            <FiClock className="text-amber-500" />
+                            <FiClock style={{ color: COLORS.cta }} />
                             <span className="text-white text-sm">On-time Delivery</span>
                           </div>
                         </motion.div>
                         
                         <motion.div
-                          className="absolute -bottom-6 -right-6 bg-gray-900 border border-amber-500/30 p-4 rounded-lg shadow-lg"
+                          className="absolute -bottom-6 -right-6 bg-gray-900 p-4 rounded-lg shadow-lg border"
+                          style={{ borderColor: COLORS.cta + "4D" }}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 2 }}
                         >
                           <div className="flex items-center gap-2">
-                            <FiDollarSign className="text-amber-500" />
+                            <FiDollarSign style={{ color: COLORS.cta }} />
                             <span className="text-white text-sm">Cost Efficiency</span>
                           </div>
                         </motion.div>
@@ -388,7 +424,6 @@ export default function Home() {
             ) : null
           )}
         </AnimatePresence>
-        
         
         {/* Scroll indicator */}
         <motion.div 
@@ -402,9 +437,12 @@ export default function Home() {
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
           >
-            <div className="w-8 h-12 rounded-full border-2 border-amber-500 flex justify-center p-1">
+            <div className="w-8 h-12 rounded-full border-2 flex justify-center p-1"
+              style={{ borderColor: COLORS.cta }}
+            >
               <motion.div 
-                className="w-2 h-2 bg-amber-500 rounded-full"
+                className="w-2 h-2 rounded-full"
+                style={{ background: COLORS.cta }}
                 animate={{ y: [0, 15, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
               />
@@ -413,21 +451,23 @@ export default function Home() {
         </motion.div>
       </section>
 
-
-
       {/* Stats Section */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="relative py-20 bg-gradient-to-br from-gray-900 to-amber-900 text-white overflow-hidden"
+        className="relative py-20 text-white overflow-hidden"
+        style={{ background: COLORS.primaryBg }}
       >
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute -right-32 -top-32 w-96 h-96 bg-gradient-to-r from-amber-400/30 to-orange-400/30 rounded-full blur-2xl" />
-          <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-gradient-to-r from-gray-400/30 to-blue-400/30 rounded-full blur-2xl" />
+          <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full blur-2xl"
+            style={{ background: `linear-gradient(90deg, ${COLORS.cta}44, ${COLORS.accent}44)` }}
+          />
+          <div className="absolute -left-32 -bottom-32 w-96 h-96 rounded-full blur-2xl"
+            style={{ background: `linear-gradient(90deg, #cbd5e1, #38bdf8)` }}
+          />
         </div>
-
         <div className="container relative grid md:grid-cols-4 gap-6 text-center mx-auto px-4">
           {[
             { icon: <FiCheckCircle size={28} />, value: '250+', label: 'Projects Completed' },
@@ -439,15 +479,16 @@ export default function Home() {
               key={index}
               whileHover={{ y: -10 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="p-6 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all"
+              className="p-6 rounded-xl bg-white/90 backdrop-blur-lg border transition-all"
+              style={{ borderColor: COLORS.border }}
             >
-              <div className="flex justify-center text-3xl mb-4 text-amber-400">
+              <div className="flex justify-center text-3xl mb-4" style={{ color: COLORS.cta }}>
                 {stat.icon}
               </div>
-              <div className="text-4xl font-bold mb-2">
+              <div className="text-4xl font-bold mb-2" style={{ color: COLORS.primaryBg }}>
                 {stat.value}
               </div>
-              <div className="text-sm uppercase tracking-widest text-gray-300">
+              <div className="text-sm uppercase tracking-widest" style={{ color: COLORS.dark }}>
                 {stat.label}
               </div>
             </motion.div>
@@ -456,7 +497,9 @@ export default function Home() {
       </motion.section>
 
       {/* About Section */}
-      <section ref={aboutRef} className="relative py-20 bg-white">
+      <section ref={aboutRef} className="relative py-20"
+        style={{ background: COLORS.sectionBg }}
+      >
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <motion.div 
@@ -473,7 +516,9 @@ export default function Home() {
                   height={600}
                   className="w-full h-auto"
                 />
-                <div className="absolute -bottom-4 -right-4 bg-amber-600 text-white p-6 rounded-lg shadow-lg">
+                <div className="absolute -bottom-4 -right-4 p-6 rounded-lg shadow-lg"
+                  style={{ background: COLORS.cta, color: COLORS.white }}
+                >
                   <div className="text-3xl font-bold">12+</div>
                   <div className="text-sm">Years Experience</div>
                 </div>
@@ -486,41 +531,43 @@ export default function Home() {
               viewport={{ once: true }}
               className="lg:w-1/2"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                About <span className="text-amber-600">CEKOL Engineering</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6"
+                style={{ color: COLORS.primaryBg }}
+              >
+                About <span style={{ color: COLORS.cta }}>CEKOL Engineering</span>
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg mb-6" style={{ color: COLORS.dark }}>
                 Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited is a leading civil engineering and construction company operating across Africa. We specialize in delivering high-quality, innovative, and sustainable infrastructure solutions.
               </p>
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                  <div className="flex-shrink-0 mt-1 mr-4" style={{ color: COLORS.cta }}>
                     <FiAward size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">NCA5 Certified</h4>
-                    <p className="text-gray-600">Highest category certification for building works from the National Construction Authority</p>
+                    <h4 className="font-semibold" style={{ color: COLORS.primaryBg }}>NCA5 Certified</h4>
+                    <p style={{ color: COLORS.dark }}>Highest category certification for building works from the National Construction Authority</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                  <div className="flex-shrink-0 mt-1 mr-4" style={{ color: COLORS.cta }}>
                     <FiShield size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Safety First</h4>
-                    <p className="text-gray-600">DOSH certified with comprehensive workplace safety policies and procedures</p>
+                    <h4 className="font-semibold" style={{ color: COLORS.primaryBg }}>Safety First</h4>
+                    <p style={{ color: COLORS.dark }}>DOSH certified with comprehensive workplace safety policies and procedures</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 mt-1 mr-4 text-amber-600">
+                  <div className="flex-shrink-0 mt-1 mr-4" style={{ color: COLORS.cta }}>
                     <FiTrendingUp size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Sustainable Growth</h4>
-                    <p className="text-gray-600">Committed to environmental sustainability and continuous improvement</p>
+                    <h4 className="font-semibold" style={{ color: COLORS.primaryBg }}>Sustainable Growth</h4>
+                    <p style={{ color: COLORS.dark }}>Committed to environmental sustainability and continuous improvement</p>
                   </div>
                 </div>
               </div>
@@ -529,7 +576,11 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="px-6 py-3 rounded-lg font-medium transition-colors"
+                  style={{
+                    background: COLORS.cta,
+                    color: COLORS.white,
+                  }}
                 >
                   Read Our Full Story
                 </motion.button>
@@ -540,8 +591,13 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="relative py-20 bg-gray-50">
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
+      <section className="relative py-20"
+        style={{ background: COLORS.sectionBg }}
+      >
+        <div className="absolute inset-0" style={{
+          background: "radial-gradient(#e0e3e7 1px,transparent 1px)",
+          backgroundSize: "16px 16px"
+        }} />
         
         <div className="container mx-auto px-4">
           <motion.div 
@@ -550,10 +606,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Our <span className="text-amber-600">Comprehensive</span> Services
+            <h2 className="text-3xl md:text-4xl font-bold mb-4"
+              style={{ color: COLORS.primaryBg }}
+            >
+              Our <span style={{ color: COLORS.cta }}>Comprehensive</span> Services
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg" style={{ color: COLORS.dark }}>
               We offer a full range of construction and engineering services to meet all your infrastructure needs
             </p>
           </motion.div>
@@ -576,17 +634,27 @@ export default function Home() {
                 }}
                 className="w-full max-w-[400px]"
               >
-                <div className="h-full bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100 hover:border-amber-100">
+                <div className="h-full bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group border"
+                  style={{ borderColor: COLORS.border }}
+                >
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-amber-100 flex items-center justify-center mr-4 group-hover:bg-amber-200 transition-colors">
-                      <span className="text-xl text-amber-600 font-bold">{index + 1}</span>
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 group-hover:bg-[#fffbe3] transition-colors"
+                      style={{
+                        background: COLORS.cta + "22",
+                        color: COLORS.cta
+                      }}
+                    >
+                      <span className="text-xl font-bold">{index + 1}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
+                    <h3 className="text-xl font-bold"
+                      style={{ color: COLORS.primaryBg }}
+                    >{service.title}</h3>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="leading-relaxed mb-4"
+                    style={{ color: COLORS.dark }}
+                  >
                     {service.description}
                   </p>
-                
                 </div>
               </motion.div>
             ))}
@@ -595,7 +663,9 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="relative py-20 bg-gray-900 text-white">
+      <section className="relative py-20 text-white"
+        style={{ background: COLORS.primaryBg }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <motion.h2 
@@ -604,14 +674,15 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-bold mb-4"
             >
-              Why <span className="text-amber-400">Choose CEKOL</span> Engineering?
+              Why <span style={{ color: COLORS.cta }}>Choose CEKOL</span> Engineering?
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-gray-300 max-w-3xl mx-auto"
+              className="text-lg"
+              style={{ color: "#e5e7eb" }}
             >
               We stand out in the construction industry through our commitment to excellence and innovation
             </motion.p>
@@ -646,9 +717,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors"
+                className="bg-[#18181b] rounded-xl p-6 hover:bg-[#23272e] transition-colors"
               >
-                <div className="text-amber-400 mb-4">{item.icon}</div>
+                <div className="mb-4" style={{ color: COLORS.cta }}>{item.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-gray-300">{item.description}</p>
               </motion.div>
@@ -658,10 +729,15 @@ export default function Home() {
       </section>
 
       {/* Featured Projects with Slideshow */}
-      <section ref={projectsRef} className="relative py-20 bg-white overflow-hidden">
+      <section ref={projectsRef} className="relative py-20 overflow-hidden"
+        style={{ background: COLORS.sectionBg }}
+      >
         <motion.div 
-          style={{ rotate }}
-          className="absolute -right-48 -top-48 w-96 h-96 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-full"
+          className="absolute -right-48 -top-48 w-96 h-96 rounded-full"
+          style={{
+            background: `linear-gradient(90deg, ${COLORS.cta}44, ${COLORS.accent}44)`,
+            rotate
+          }}
         />
 
         <div className="container mx-auto px-4">
@@ -671,10 +747,14 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Our <span className="text-amber-600">Featured</span> Projects
+            <h2 className="text-3xl md:text-4xl font-bold mb-4"
+              style={{ color: COLORS.primaryBg }}
+            >
+              Our <span style={{ color: COLORS.cta }}>Featured</span> Projects
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg"
+              style={{ color: COLORS.dark }}
+            >
               Showcasing some of our most significant and challenging projects
             </p>
           </motion.div>
@@ -700,7 +780,6 @@ export default function Home() {
                 />
               </motion.div>
             </AnimatePresence>
-            
           </div>
 
           <motion.div 
@@ -711,7 +790,11 @@ export default function Home() {
           >
             <Link href="/projects">
               <button 
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg shadow-lg transition-colors"
+                className="px-8 py-3 rounded-lg font-medium text-lg shadow-lg transition-colors"
+                style={{
+                  background: COLORS.cta,
+                  color: COLORS.white,
+                }}
               >
                 View All Projects
               </button>
@@ -721,7 +804,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-20 bg-gray-50">
+      <section className="relative py-20"
+        style={{ background: COLORS.sectionBg }}
+      >
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -729,10 +814,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              What Our <span className="text-amber-600">Clients</span> Say
+            <h2 className="text-3xl md:text-4xl font-bold mb-4"
+              style={{ color: COLORS.primaryBg }}
+            >
+              What Our <span style={{ color: COLORS.cta }}>Clients</span> Say
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg" style={{ color: COLORS.dark }}>
               Hear from some of our satisfied clients about their experience working with us
             </p>
           </motion.div>
@@ -764,14 +851,15 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-xl p-8 shadow-md"
+                className="bg-white rounded-xl p-8 shadow-md border"
+                style={{ borderColor: COLORS.border }}
               >
-                <div className="text-amber-500 text-4xl mb-4">&quot;</div>
-                <p className="text-gray-700 italic mb-6">{testimonial.quote}</p>
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-bold text-gray-900">{testimonial.author}</h4>
-                  <p className="text-gray-600 text-sm">{testimonial.position}</p>
-                  <p className="text-amber-600 text-sm mt-1">{testimonial.project}</p>
+                <div className="text-4xl mb-4" style={{ color: COLORS.cta }}>&quot;</div>
+                <p className="italic mb-6" style={{ color: COLORS.dark }}>{testimonial.quote}</p>
+                <div className="border-t pt-4" style={{ borderColor: COLORS.border }}>
+                  <h4 className="font-bold" style={{ color: COLORS.primaryBg }}>{testimonial.author}</h4>
+                  <p className="text-sm" style={{ color: COLORS.dark }}>{testimonial.position}</p>
+                  <p className="text-sm mt-1" style={{ color: COLORS.cta }}>{testimonial.project}</p>
                 </div>
               </motion.div>
             ))}
@@ -780,7 +868,9 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-gray-900 to-amber-900 text-white">
+      <section className="relative py-20 text-white"
+        style={{ background: `linear-gradient(90deg, ${COLORS.primaryBg} 80%, ${COLORS.dark} 100%)` }}
+      >
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[url('/images/image.png')] bg-cover bg-center" />
         </div>
@@ -800,6 +890,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-xl mb-8 max-w-3xl mx-auto"
+            style={{ color: "#e5e7eb" }}
           >
             Contact us today to discuss your construction needs and get a free consultation
           </motion.p>
@@ -814,7 +905,11 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+                className="px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+                style={{
+                  background: COLORS.cta,
+                  color: COLORS.white,
+                }}
               >
                 Get a Free Quote
               </motion.button>
@@ -823,7 +918,12 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-white hover:text-gray-900 transition-colors"
+                className="border-2 px-8 py-3 rounded-lg font-medium text-lg transition-colors"
+                style={{
+                  background: "transparent",
+                  borderColor: COLORS.white,
+                  color: COLORS.white,
+                }}
               >
                 View Our Work
               </motion.button>

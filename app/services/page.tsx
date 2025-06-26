@@ -97,7 +97,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Core Engineering Services
             </h2>
-            <div className="w-24 h-1 bg-blue-900 mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-gray-900 mx-auto mb-6"></div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Delivering excellence across all project phases with innovative engineering solutions and quality craftsmanship
             </p>
@@ -116,7 +116,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Why Choose Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-4">
+      <section className="py-16 bg-gradient-to-r from-gray-900 to-blue-800 text-white px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -200,7 +200,7 @@ export default function ServicesPage() {
                       <h2 className="text-2xl font-bold text-gray-900">
                         {selectedService.title}
                       </h2>
-                      <div className="w-16 h-1 bg-blue-900 mt-2"></div>
+                      <div className="w-16 h-1 bg-gray-900 mt-2"></div>
                     </div>
                   </div>
                   
@@ -237,7 +237,7 @@ export default function ServicesPage() {
                   <div className="mt-8 pt-6 border-t border-gray-200">
                     <button
                       onClick={closeService}
-                      className="bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center"
+                      className="bg-blue-900 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center"
                     >
                       Close
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">

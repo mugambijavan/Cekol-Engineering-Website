@@ -42,14 +42,14 @@ function HeroSection({ title, subtitle, bgImage, variant = 'services' }) {
                 className: "absolute inset-0",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-900/30 to-transparent"
+                        className: "absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-gray/30 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/app/components/HeroSection.tsx",
                         lineNumber: 47,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-blue-900/70 to-transparent"
+                        className: "absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-900/70 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/app/components/HeroSection.tsx",
                         lineNumber: 48,
@@ -65,14 +65,14 @@ function HeroSection({ title, subtitle, bgImage, variant = 'services' }) {
                 className: "absolute inset-0",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-blue-900/70 to-transparent"
+                        className: "absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-gray-900/70 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/app/components/HeroSection.tsx",
                         lineNumber: 54,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-blue-900/70 to-transparent"
+                        className: "absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-900/70 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/app/components/HeroSection.tsx",
                         lineNumber: 55,
@@ -162,7 +162,7 @@ function HeroSection({ title, subtitle, bgImage, variant = 'services' }) {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                             d: "M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z",
                             opacity: ".25",
-                            className: "fill-blue-900"
+                            className: "fill-gray-900"
                         }, void 0, false, {
                             fileName: "[project]/app/components/HeroSection.tsx",
                             lineNumber: 97,
@@ -171,7 +171,7 @@ function HeroSection({ title, subtitle, bgImage, variant = 'services' }) {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                             d: "M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z",
                             opacity: ".5",
-                            className: "fill-blue-800"
+                            className: "fill-gray-800"
                         }, void 0, false, {
                             fileName: "[project]/app/components/HeroSection.tsx",
                             lineNumber: 102,
@@ -179,7 +179,7 @@ function HeroSection({ title, subtitle, bgImage, variant = 'services' }) {
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                             d: "M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z",
-                            className: "fill-blue-700"
+                            className: "fill-gray-700"
                         }, void 0, false, {
                             fileName: "[project]/app/components/HeroSection.tsx",
                             lineNumber: 107,
@@ -534,7 +534,7 @@ function ServicesPage() {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-24 h-1 bg-blue-900 mx-auto mb-6"
+                                    className: "w-24 h-1 bg-gray-900 mx-auto mb-6"
                                 }, void 0, false, {
                                     fileName: "[project]/app/services/page.tsx",
                                     lineNumber: 100,
@@ -581,7 +581,7 @@ function ServicesPage() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-                className: "py-16 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-4",
+                className: "py-16 bg-gradient-to-r from-gray-900 to-blue-800 text-white px-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "max-w-7xl mx-auto",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -804,7 +804,7 @@ function ServicesPage() {
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-16 h-1 bg-blue-900 mt-2"
+                                                                className: "w-16 h-1 bg-gray-900 mt-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/services/page.tsx",
                                                                 lineNumber: 203,
@@ -920,7 +920,7 @@ function ServicesPage() {
                                                 className: "mt-8 pt-6 border-t border-gray-200",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     onClick: closeService,
-                                                    className: "bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center",
+                                                    className: "bg-blue-900 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center",
                                                     children: [
                                                         "Close",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {

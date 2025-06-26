@@ -283,22 +283,7 @@ const AboutPage = () => {
           </AnimatePresence>
         </div>
 
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <div
-            className="animate-bounce w-8 h-14 rounded-full border-4 flex justify-center p-2"
-            style={{ borderColor: COLORS.white + "80" }}
-          >
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ background: COLORS.white, marginTop: 8 }}
-            ></div>
-          </div>
-        </motion.div>
+        
       </section>
 
       {/* Company Introduction */}

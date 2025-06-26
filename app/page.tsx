@@ -425,30 +425,7 @@ export default function Home() {
           )}
         </AnimatePresence>
         
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5 }}
-        >
-          <span className="text-gray-300 text-sm mb-2">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <div className="w-8 h-12 rounded-full border-2 flex justify-center p-1"
-              style={{ borderColor: COLORS.cta }}
-            >
-              <motion.div 
-                className="w-2 h-2 rounded-full"
-                style={{ background: COLORS.cta }}
-                animate={{ y: [0, 15, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
+      
       </section>
 
       {/* Stats Section */}

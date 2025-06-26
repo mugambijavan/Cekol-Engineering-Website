@@ -143,7 +143,7 @@ export default function Navbar() {
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-bold text-xl" style={{ color: COLORS.cta }}>CEKOL</h1>
+             <h1 className="font-bold text-xl text-blue-600">CEKOL</h1>
               <p className="text-xs font-semibold tracking-wider" style={{ color: COLORS.cta}}>ENGINEERING</p>
             </div>
           </motion.div>

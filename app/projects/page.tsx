@@ -26,6 +26,32 @@ export default function ProjectsPage() {
         "/images/Image4.jpeg"
       ]
     },
+    {
+      id: 2,
+      title: "Kapkatunga Kipyemit Electric Fence",
+      value: "KES 14.5M",
+      location: "Kericho County, Kenya",
+      description: "Construction of 18km wildlife electric fence with associated infrastructure to protect communities from animal encroachment. Commissioned by Kenya Wildlife Service with 180-day completion timeline. Included specialized equipment leasing from government transport division.",
+      year: "2023-2024",
+      images: [
+        "/images/fence1.jpeg",
+        "/images/fence2.jpeg",
+        "/images/fence3.jpeg",
+        "/images/fence4.jpeg"
+      ]
+    },
+    {
+      id: 3,
+      title: "Uhuru Business Park",
+      value: "KES 349.5M",
+      location: "Kisumu County, Kenya",
+      description: "Subcontracted construction of market complex including earthworks, stormwater drainage, concrete/cabro paving, driveways, parking, landscaping, power house, ablution block and gate house. Completed within 12-month period for Ministry of Transport & Urban Development.",
+      year: "2019-2020",
+      images: [
+        "/images/market2.jpeg",
+        "/images/market1.jpeg",
+      ]
+    }
     // Add more projects as needed
   ];
 

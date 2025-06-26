@@ -13,6 +13,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 'use client';
 ;
 ;
+// Construction color palette
+const COLORS = {
+    primaryBg: "#0a2240",
+    cta: "#f59e0b",
+    accent: "#ffbe3b",
+    white: "#fff"
+};
 function Footer() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].footer, {
         initial: {
@@ -27,7 +34,11 @@ function Footer() {
             duration: 0.7,
             ease: "easeOut"
         },
-        className: "bg-gray-900 text-gray-300 py-6",
+        className: "py-6",
+        style: {
+            background: `linear-gradient(90deg, ${COLORS.primaryBg} 80%, #18181b 100%)`,
+            color: COLORS.white
+        },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-4xl mx-auto flex flex-col items-center space-y-2",
             children: [
@@ -45,6 +56,9 @@ function Footer() {
                         duration: 0.7
                     },
                     className: "text-xs tracking-wide",
+                    style: {
+                        color: COLORS.white
+                    },
                     children: [
                         "© ",
                         new Date().getFullYear(),
@@ -52,7 +66,7 @@ function Footer() {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Footer.tsx",
-                    lineNumber: 13,
+                    lineNumber: 25,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
@@ -61,28 +75,31 @@ function Footer() {
                     rel: "noopener noreferrer",
                     whileHover: {
                         scale: 1.06,
-                        color: "#ffd700"
+                        color: COLORS.accent
                     },
                     transition: {
                         type: "spring",
                         stiffness: 300
                     },
-                    className: "text-xs text-[#ffb400] hover:text-[#ffd700] font-medium transition-colors",
+                    className: "text-xs font-medium transition-colors",
+                    style: {
+                        color: COLORS.cta
+                    },
                     children: "Developed by BhakitahTech"
                 }, void 0, false, {
                     fileName: "[project]/app/components/Footer.tsx",
-                    lineNumber: 21,
+                    lineNumber: 34,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/Footer.tsx",
-            lineNumber: 12,
+            lineNumber: 24,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Footer.tsx",
-        lineNumber: 6,
+        lineNumber: 14,
         columnNumber: 5
     }, this);
 }
@@ -118,6 +135,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+// Construction color palette
+const COLORS = {
+    primaryBg: "#0a2240",
+    dark: "#18181b",
+    cta: "#f59e0b",
+    accent: "#ffbe3b",
+    white: "#fff",
+    border: "#e0e3e7"
+};
 function Navbar() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -171,7 +197,7 @@ function Navbar() {
     const linkVariants = {
         hover: {
             scale: 1.05,
-            color: "#f59e0b",
+            color: COLORS.cta,
             transition: {
                 type: "spring",
                 stiffness: 300,
@@ -227,7 +253,11 @@ function Navbar() {
         initial: "hidden",
         animate: "visible",
         variants: navVariants,
-        className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900 shadow-xl' : 'md:bg-transparent md:shadow-none'}`,
+        className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? '' : 'md:bg-transparent md:shadow-none'}`,
+        style: {
+            background: isScrolled ? COLORS.primaryBg : 'transparent',
+            boxShadow: isScrolled ? "0 4px 32px 0 rgba(10,34,64,0.12)" : undefined
+        },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
             children: [
@@ -244,7 +274,7 @@ function Navbar() {
                             className: "flex items-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-1 rounded-lg mr-3",
+                                    className: "p-1 rounded-lg mr-3 bg-white",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         src: "/images/logo.png",
                                         alt: "CEKOL ENGINEERING",
@@ -254,44 +284,50 @@ function Navbar() {
                                         priority: true
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 123,
-                                        columnNumber: 17
+                                        lineNumber: 136,
+                                        columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 122,
-                                    columnNumber: 17
+                                    lineNumber: 135,
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "hidden sm:block",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                            className: "font-bold text-xl text-white",
+                                            className: "font-bold text-xl",
+                                            style: {
+                                                color: COLORS.cta
+                                            },
                                             children: "CEKOL"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 133,
-                                            columnNumber: 17
+                                            lineNumber: 146,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-amber-400 text-xs font-semibold tracking-wider",
+                                            className: "text-xs font-semibold tracking-wider",
+                                            style: {
+                                                color: COLORS.cta
+                                            },
                                             children: "ENGINEERING"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 134,
-                                            columnNumber: 17
+                                            lineNumber: 147,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 132,
-                                    columnNumber: 17
+                                    lineNumber: 145,
+                                    columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 117,
-                            columnNumber: 13
+                            lineNumber: 130,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "hidden md:flex space-x-6 items-center",
@@ -306,11 +342,17 @@ function Navbar() {
                                         className: "relative",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: href,
-                                            className: `${isActive ? 'text-amber-400' : `text-${isScrolled ? 'gray-300' : 'white'}`} text-lg font-bold px-3 py-2 transition-colors duration-300`,
+                                            className: `${isActive ? 'font-bold' : 'font-bold'} text-lg px-3 py-2 transition-colors duration-300`,
+                                            style: {
+                                                color: isActive ? COLORS.cta : isScrolled ? COLORS.white : COLORS.white
+                                            },
                                             children: [
                                                 item,
                                                 isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                                    className: "absolute bottom-0 left-0 w-full h-1 bg-amber-500 rounded-full",
+                                                    className: "absolute bottom-0 left-0 w-full h-1 rounded-full",
+                                                    style: {
+                                                        background: COLORS.accent
+                                                    },
                                                     layoutId: "activeTab",
                                                     transition: {
                                                         type: 'spring',
@@ -319,26 +361,26 @@ function Navbar() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/components/Navbar.tsx",
-                                                    lineNumber: 162,
-                                                    columnNumber: 25
+                                                    lineNumber: 181,
+                                                    columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 152,
-                                            columnNumber: 21
+                                            lineNumber: 164,
+                                            columnNumber: 19
                                         }, this)
                                     }, item, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 145,
-                                        columnNumber: 21
+                                        lineNumber: 157,
+                                        columnNumber: 17
                                     }, this);
                                 }),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
                                     onClick: handleQuoteClick,
                                     whileHover: {
                                         scale: 1.05,
-                                        backgroundColor: "#f59e0b",
+                                        backgroundColor: COLORS.accent,
                                         transition: {
                                             duration: 0.3
                                         }
@@ -346,18 +388,23 @@ function Navbar() {
                                     whileTap: {
                                         scale: 0.95
                                     },
-                                    className: `${isScrolled ? 'bg-amber-500 text-gray-900' : 'md:bg-amber-500 md:text-gray-900'} px-6 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 ml-4`,
+                                    className: "px-6 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 ml-4",
+                                    style: {
+                                        background: COLORS.cta,
+                                        color: COLORS.primaryBg,
+                                        border: "none"
+                                    },
                                     children: "GET QUOTE"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 172,
-                                    columnNumber: 17
+                                    lineNumber: 192,
+                                    columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 139,
-                            columnNumber: 13
+                            lineNumber: 152,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
                             onClick: ()=>setIsOpen(!isOpen),
@@ -366,28 +413,34 @@ function Navbar() {
                                 scale: 0.9
                             },
                             children: isOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiX"], {
-                                className: "w-8 h-8 text-amber-500"
+                                className: "w-8 h-8",
+                                style: {
+                                    color: COLORS.cta
+                                }
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.tsx",
-                                lineNumber: 197,
-                                columnNumber: 17
+                                lineNumber: 218,
+                                columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiMenu"], {
-                                className: "w-8 h-8 text-amber-500"
+                                className: "w-8 h-8",
+                                style: {
+                                    color: COLORS.cta
+                                }
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.tsx",
-                                lineNumber: 199,
-                                columnNumber: 17
+                                lineNumber: 220,
+                                columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 191,
-                            columnNumber: 13
+                            lineNumber: 212,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Navbar.tsx",
-                    lineNumber: 116,
-                    columnNumber: 13
+                    lineNumber: 129,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
                     children: isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -395,7 +448,11 @@ function Navbar() {
                         animate: "open",
                         exit: "closed",
                         variants: mobileMenuVariants,
-                        className: "md:hidden overflow-hidden bg-gray-800 rounded-lg shadow-xl border border-gray-700",
+                        className: "md:hidden overflow-hidden rounded-lg shadow-xl border",
+                        style: {
+                            background: COLORS.primaryBg,
+                            borderColor: COLORS.border
+                        },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "pt-2 pb-4 space-y-1",
                             children: [
@@ -406,35 +463,42 @@ function Navbar() {
                                         variants: mobileLinkVariants,
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: href,
-                                            className: `${isActive ? 'bg-amber-900 text-amber-400' : 'text-gray-300'} block px-6 py-4 text-lg font-bold mx-2 transition-colors rounded-lg`,
+                                            className: `block px-6 py-4 text-lg font-bold mx-2 transition-colors rounded-lg`,
+                                            style: {
+                                                background: isActive ? COLORS.cta + "20" : "transparent",
+                                                color: isActive ? COLORS.cta : COLORS.white
+                                            },
                                             onClick: ()=>setIsOpen(false),
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center",
                                                 children: [
                                                     item,
                                                     isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                                        className: "ml-2 w-2 h-2 bg-amber-500 rounded-full",
+                                                        className: "ml-2 w-2 h-2 rounded-full",
+                                                        style: {
+                                                            background: COLORS.cta
+                                                        },
                                                         layoutId: "mobileActiveTab"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Navbar.tsx",
-                                                        lineNumber: 234,
-                                                        columnNumber: 33
+                                                        lineNumber: 260,
+                                                        columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Navbar.tsx",
-                                                lineNumber: 231,
-                                                columnNumber: 29
+                                                lineNumber: 257,
+                                                columnNumber: 25
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.tsx",
-                                            lineNumber: 224,
-                                            columnNumber: 25
+                                            lineNumber: 248,
+                                            columnNumber: 23
                                         }, this)
                                     }, item, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 220,
-                                        columnNumber: 25
+                                        lineNumber: 244,
+                                        columnNumber: 21
                                     }, this);
                                 }),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -442,44 +506,48 @@ function Navbar() {
                                     className: "px-4 pt-2",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleQuoteClick,
-                                        className: "w-full bg-amber-500 text-gray-900 px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-amber-600 transition-colors",
+                                        className: "w-full px-6 py-3 rounded-lg font-bold shadow-lg hover:shadow-xl transition-colors",
+                                        style: {
+                                            background: COLORS.cta,
+                                            color: COLORS.primaryBg
+                                        },
                                         children: "GET QUOTE"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.tsx",
-                                        lineNumber: 248,
-                                        columnNumber: 21
+                                        lineNumber: 275,
+                                        columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.tsx",
-                                    lineNumber: 244,
-                                    columnNumber: 21
+                                    lineNumber: 271,
+                                    columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.tsx",
-                            lineNumber: 214,
-                            columnNumber: 17
+                            lineNumber: 239,
+                            columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Navbar.tsx",
-                        lineNumber: 207,
-                        columnNumber: 17
+                        lineNumber: 228,
+                        columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/Navbar.tsx",
-                    lineNumber: 205,
-                    columnNumber: 13
+                    lineNumber: 226,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/Navbar.tsx",
-            lineNumber: 115,
-            columnNumber: 9
+            lineNumber: 128,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Navbar.tsx",
-        lineNumber: 105,
-        columnNumber: 9
+        lineNumber: 114,
+        columnNumber: 5
     }, this);
 }
 _s(Navbar, "PinzjtFwW6gtjir3i536HdNYDEs=", false, function() {

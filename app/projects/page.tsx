@@ -1,10 +1,20 @@
-// app/projects/page.tsx
 'use client';
 import { useState } from 'react';
 import HeroSection from '../components/HeroSection';
 import ProjectCard from './components/ProjectCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+
+// Construction color palette
+const COLORS = {
+  primaryBg: "#0a2240",
+  sectionBg: "#f5f6fa",
+  dark: "#18181b",
+  cta: "#f59e0b",
+  accent: "#ffbe3b",
+  white: "#fff",
+  border: "#e0e3e7",
+};
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -67,13 +77,13 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div style={{ background: COLORS.sectionBg }}>
       <HeroSection 
         title="Our Engineering Legacy"
         subtitle="Transforming landscapes across East Africa"
         variant="projects"
       />
-      
+
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -82,11 +92,11 @@ export default function ProjectsPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.primaryBg }}>
               Featured Projects Portfolio
             </h2>
-            <div className="w-24 h-1 bg-blue-900 mx-auto mb-6"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <div className="w-24 h-1 mx-auto mb-6" style={{ background: COLORS.cta }}></div>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: COLORS.dark }}>
               Discover our landmark projects that showcase our expertise in delivering complex infrastructure solutions
             </p>
           </motion.div>
@@ -110,7 +120,11 @@ export default function ProjectsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-50 overflow-y-auto"
+            style={{
+              background: COLORS.primaryBg + "E6",
+              backdropFilter: "blur(4px)"
+            }}
           >
             <div className="min-h-screen px-4 flex items-center justify-center">
               <div 
@@ -122,13 +136,15 @@ export default function ProjectsPage() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="relative bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+                className="relative rounded-xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+                style={{ background: COLORS.white }}
               >
                 <button
                   onClick={closeProject}
-                  className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+                  className="absolute top-4 right-4 z-10 rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+                  style={{ background: COLORS.white }}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" style={{ color: COLORS.dark }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -153,7 +169,7 @@ export default function ProjectsPage() {
                           onClick={() => setActiveImageIndex(index)}
                           className={`w-3 h-3 rounded-full transition-colors ${
                             index === activeImageIndex 
-                              ? 'bg-blue-700' 
+                              ? 'bg-[#0a2240]'
                               : 'bg-white/80 hover:bg-white'
                           }`}
                           aria-label={`View image ${index + 1}`}
@@ -169,15 +185,15 @@ export default function ProjectsPage() {
                   {/* Project Details */}
                   <div className="lg:w-5/12 p-6 lg:p-8 overflow-y-auto">
                     <div className="flex justify-between items-start mb-6">
-                      <h2 className="text-2xl font-bold text-gray-900">
+                      <h2 className="text-2xl font-bold mb-2" style={{ color: COLORS.primaryBg }}>
                         {selectedProject.title}
                       </h2>
-                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 rounded-full text-sm font-medium" style={{ background: COLORS.cta + "33", color: COLORS.primaryBg }}>
                         {selectedProject.year}
                       </span>
                     </div>
                     
-                    <div className="flex items-center text-gray-600 mb-4">
+                    <div className="flex items-center mb-4" style={{ color: COLORS.primaryBg }}>
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
@@ -185,19 +201,25 @@ export default function ProjectsPage() {
                     </div>
                     
                     <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Value</h3>
-                      <p className="text-xl font-bold text-blue-900">{selectedProject.value}</p>
+                      <h3 className="text-lg font-semibold mb-2" style={{ color: COLORS.cta }}>
+                        Project Value
+                      </h3>
+                      <p className="text-xl font-bold" style={{ color: COLORS.primaryBg }}>{selectedProject.value}</p>
                     </div>
                     
                     <div className="mb-8">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Project Details</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <h3 className="text-lg font-semibold mb-3" style={{ color: COLORS.cta }}>
+                        Project Details
+                      </h3>
+                      <p style={{ color: COLORS.dark }}>
                         {selectedProject.description}
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Project Gallery</h3>
+                      <h3 className="text-lg font-semibold mb-3" style={{ color: COLORS.cta }}>
+                        Project Gallery
+                      </h3>
                       <div className="grid grid-cols-3 gap-3">
                         {selectedProject.images.map((img, index) => (
                           <button
@@ -205,8 +227,8 @@ export default function ProjectsPage() {
                             onClick={() => setActiveImageIndex(index)}
                             className={`relative h-24 rounded-lg overflow-hidden border-2 transition-all ${
                               index === activeImageIndex
-                                ? 'border-blue-600 scale-105'
-                                : 'border-transparent hover:border-blue-400'
+                                ? 'border-[#0a2240] scale-105'
+                                : 'border-transparent hover:border-[#f59e0b]'
                             }`}
                           >
                             <Image
@@ -216,7 +238,7 @@ export default function ProjectsPage() {
                               className="object-cover"
                             />
                             {index === 0 && (
-                              <span className="absolute top-1 left-1 bg-blue-600 text-white text-xs px-1.5 py-0.5 rounded">
+                              <span className="absolute top-1 left-1 rounded px-1.5 py-0.5 text-xs" style={{ background: COLORS.cta, color: COLORS.white }}>
                                 Main
                               </span>
                             )}

@@ -1,8 +1,16 @@
-// app/services/components/ServiceCard.tsx
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+
+// Color palette for construction theme
+const COLORS = {
+  primaryBg: "#0a2240",
+  cta: "#f59e0b",
+  accent: "#ffbe3b",
+  white: "#fff",
+  border: "#e0e3e7",
+};
 
 interface Service {
   id: number;
@@ -24,7 +32,11 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col group"
+      className="rounded-xl shadow-lg overflow-hidden border h-full flex flex-col group"
+      style={{
+        background: COLORS.white,
+        borderColor: COLORS.border
+      }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
@@ -37,18 +49,18 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
           objectFit="cover"
           className="transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 text-3xl text-white">
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #18181bcc, transparent)" }}></div>
+        <div className="absolute bottom-4 left-4 text-3xl" style={{ color: COLORS.white }}>
           {service.icon}
         </div>
       </div>
       
       <div className="p-6 flex-1">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
+        <h3 className="text-xl font-bold mb-3" style={{ color: COLORS.primaryBg }}>
           {service.title}
         </h3>
         
-        <p className="text-gray-700 mb-6">
+        <p className="mb-6" style={{ color: "#374151" }}>
           {service.description}
         </p>
       </div>
@@ -56,8 +68,8 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
       <motion.div
         initial={false}
         animate={{ 
-          backgroundColor: isHovered ? '#1e40af' : '#f3f4f6',
-          color: isHovered ? 'white' : '#1e40af'
+          backgroundColor: isHovered ? COLORS.primaryBg : COLORS.white,
+          color: isHovered ? COLORS.white : COLORS.primaryBg
         }}
         className="px-6 py-3"
       >
@@ -72,6 +84,9 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
             className="h-5 w-5" 
             viewBox="0 0 20 20" 
             fill="currentColor"
+            style={{
+              color: isHovered ? COLORS.cta : COLORS.primaryBg
+            }}
           >
             <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
           </motion.svg>

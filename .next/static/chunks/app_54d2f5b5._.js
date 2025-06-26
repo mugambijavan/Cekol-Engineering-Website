@@ -632,7 +632,16 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-// Wrap the component that uses useSearchParams in a separate function
+// Construction color palette
+const COLORS = {
+    primaryBg: "#0a2240",
+    sectionBg: "#f5f6fa",
+    dark: "#18181b",
+    cta: "#f59e0b",
+    accent: "#ffbe3b",
+    white: "#fff",
+    border: "#e0e3e7"
+};
 function ContactContent() {
     _s();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
@@ -653,12 +662,20 @@ function ContactContent() {
         isQuoteRequest
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bg-gray-50",
+        style: {
+            background: COLORS.sectionBg
+        },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-                className: "relative h-[50vh] min-h-[400px] w-full bg-gradient-to-r from-blue-900 to-emerald-800",
+                className: "relative h-[50vh] min-h-[400px] w-full",
+                style: {
+                    background: `linear-gradient(90deg, ${COLORS.primaryBg} 80%, ${COLORS.dark} 100%)`
+                },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "absolute inset-0 bg-gradient-to-r from-blue-900/90 to-emerald-800/80",
+                    className: "absolute inset-0",
+                    style: {
+                        background: `linear-gradient(90deg, ${COLORS.primaryBg}E6 90%, ${COLORS.dark}CC 100%)`
+                    },
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "container mx-auto h-full flex flex-col items-center justify-center px-4 text-center",
                         children: [
@@ -674,11 +691,14 @@ function ContactContent() {
                                 transition: {
                                     duration: 0.7
                                 },
-                                className: "text-4xl md:text-5xl font-bold text-white mb-4",
+                                className: "text-4xl md:text-5xl font-bold mb-4",
+                                style: {
+                                    color: COLORS.white
+                                },
                                 children: "Let's Build Something Amazing"
                             }, void 0, false, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 28,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -692,11 +712,14 @@ function ContactContent() {
                                     duration: 0.7,
                                     delay: 0.2
                                 },
-                                className: "text-xl text-white/90 mb-8 max-w-2xl",
+                                className: "text-xl mb-8 max-w-2xl",
+                                style: {
+                                    color: COLORS.white + 'E6'
+                                },
                                 children: "Contact our engineering experts for innovative solutions"
                             }, void 0, false, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 36,
+                                lineNumber: 57,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -720,42 +743,50 @@ function ContactContent() {
                                         whileTap: {
                                             scale: 0.95
                                         },
-                                        className: "bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-medium",
+                                        className: "px-6 py-3 rounded-lg font-medium border-2",
+                                        style: {
+                                            background: "transparent",
+                                            borderColor: COLORS.white,
+                                            color: COLORS.white
+                                        },
                                         children: "Call Now"
                                     }, void 0, false, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 51,
+                                        lineNumber: 73,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 72,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 44,
+                                lineNumber: 66,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/contact/page.tsx",
-                        lineNumber: 27,
+                        lineNumber: 47,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/contact/page.tsx",
-                    lineNumber: 26,
+                    lineNumber: 41,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/contact/page.tsx",
-                lineNumber: 25,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 id: "quote-section",
-                className: "py-16 px-4 bg-gradient-to-r from-blue-900 to-emerald-800",
+                className: "py-16 px-4",
+                style: {
+                    background: `linear-gradient(90deg, ${COLORS.primaryBg} 80%, ${COLORS.dark} 100%)`
+                },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "max-w-7xl mx-auto",
                     children: [
@@ -774,32 +805,41 @@ function ContactContent() {
                             className: "text-center mb-12",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "text-3xl md:text-4xl font-bold text-white mb-4",
+                                    className: "text-3xl md:text-4xl font-bold mb-4",
+                                    style: {
+                                        color: COLORS.white
+                                    },
                                     children: "Request a Project Quote"
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 106,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-24 h-1 bg-amber-400 mx-auto mb-6"
+                                    className: "w-24 h-1 mx-auto mb-6",
+                                    style: {
+                                        background: COLORS.cta
+                                    }
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 79,
+                                    lineNumber: 109,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-lg text-white/90 max-w-3xl mx-auto",
+                                    className: "text-lg max-w-3xl mx-auto",
+                                    style: {
+                                        color: COLORS.white + 'E6'
+                                    },
                                     children: "Get a customized estimate for your construction project. Our experts will review your requirements and provide a detailed quote within 24 hours."
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 80,
+                                    lineNumber: 110,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/contact/page.tsx",
-                            lineNumber: 70,
+                            lineNumber: 100,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -815,55 +855,63 @@ function ContactContent() {
                                 duration: 0.5,
                                 delay: 0.2
                             },
-                            className: "bg-white rounded-2xl shadow-xl p-6 md:p-8",
+                            className: "rounded-2xl shadow-xl p-6 md:p-8",
+                            style: {
+                                background: COLORS.white
+                            },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "mb-8",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "text-2xl font-bold text-gray-900 mb-2",
+                                            className: "text-2xl font-bold mb-2",
+                                            style: {
+                                                color: COLORS.primaryBg
+                                            },
                                             children: "Tell us about your project"
                                         }, void 0, false, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 124,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-600",
+                                            style: {
+                                                color: COLORS.dark
+                                            },
                                             children: "Fill out the form below and our team will prepare a customized quote"
                                         }, void 0, false, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 96,
+                                            lineNumber: 127,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 123,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$ContactForm$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     isQuote: true
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 101,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/contact/page.tsx",
-                            lineNumber: 86,
+                            lineNumber: 116,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/contact/page.tsx",
-                    lineNumber: 69,
+                    lineNumber: 99,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/contact/page.tsx",
-                lineNumber: 65,
+                lineNumber: 92,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -889,32 +937,41 @@ function ContactContent() {
                             className: "text-center mb-16",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "text-3xl md:text-4xl font-bold text-gray-900 mb-4",
+                                    className: "text-3xl md:text-4xl font-bold mb-4",
+                                    style: {
+                                        color: COLORS.primaryBg
+                                    },
                                     children: "Get in Touch"
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 116,
+                                    lineNumber: 147,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-24 h-1 bg-blue-900 mx-auto mb-6"
+                                    className: "w-24 h-1 mx-auto mb-6",
+                                    style: {
+                                        background: COLORS.cta
+                                    }
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 150,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-lg text-gray-600 max-w-3xl mx-auto",
+                                    className: "text-lg max-w-3xl mx-auto",
+                                    style: {
+                                        color: COLORS.dark
+                                    },
                                     children: "Have a project in mind? Reach out to our team for a consultation. We respond within 24 hours."
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 151,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/contact/page.tsx",
-                            lineNumber: 109,
+                            lineNumber: 140,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -935,14 +992,20 @@ function ContactContent() {
                                     viewport: {
                                         once: true
                                     },
-                                    className: "bg-white rounded-2xl shadow-xl p-8",
+                                    className: "rounded-2xl shadow-xl p-8",
+                                    style: {
+                                        background: COLORS.white
+                                    },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "text-3xl font-bold text-gray-900 mb-8",
+                                            className: "text-3xl font-bold mb-8",
+                                            style: {
+                                                color: COLORS.primaryBg
+                                            },
                                             children: "Our Contact Details"
                                         }, void 0, false, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 134,
+                                            lineNumber: 166,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -952,9 +1015,15 @@ function ContactContent() {
                                                     className: "flex items-start",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "bg-blue-100 p-3 rounded-full mr-4",
+                                                            className: "p-3 rounded-full mr-4",
+                                                            style: {
+                                                                background: COLORS.primaryBg + "15"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                className: "w-6 h-6 text-blue-900",
+                                                                className: "w-6 h-6",
+                                                                style: {
+                                                                    color: COLORS.primaryBg
+                                                                },
                                                                 fill: "none",
                                                                 stroke: "currentColor",
                                                                 viewBox: "0 0 24 24",
@@ -965,64 +1034,77 @@ function ContactContent() {
                                                                     d: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 140,
+                                                                    lineNumber: 172,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/contact/page.tsx",
-                                                                lineNumber: 139,
+                                                                lineNumber: 171,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 138,
+                                                            lineNumber: 170,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                    className: "text-lg font-semibold text-gray-900 mb-1",
+                                                                    className: "text-lg font-semibold mb-1",
+                                                                    style: {
+                                                                        color: COLORS.primaryBg
+                                                                    },
                                                                     children: "Call Us"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 144,
+                                                                    lineNumber: 176,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600",
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "+254 725 745 922"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 145,
+                                                                    lineNumber: 177,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600",
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "Mon-Fri: 8:00am - 5:00pm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 146,
+                                                                    lineNumber: 178,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 143,
+                                                            lineNumber: 175,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 137,
+                                                    lineNumber: 169,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-start",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "bg-emerald-100 p-3 rounded-full mr-4",
+                                                            className: "p-3 rounded-full mr-4",
+                                                            style: {
+                                                                background: COLORS.cta + "22"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                className: "w-6 h-6 text-emerald-800",
+                                                                className: "w-6 h-6",
+                                                                style: {
+                                                                    color: COLORS.cta
+                                                                },
                                                                 fill: "none",
                                                                 stroke: "currentColor",
                                                                 viewBox: "0 0 24 24",
@@ -1033,64 +1115,77 @@ function ContactContent() {
                                                                     d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 153,
+                                                                    lineNumber: 185,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/contact/page.tsx",
-                                                                lineNumber: 152,
+                                                                lineNumber: 184,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 151,
+                                                            lineNumber: 183,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                    className: "text-lg font-semibold text-gray-900 mb-1",
+                                                                    className: "text-lg font-semibold mb-1",
+                                                                    style: {
+                                                                        color: COLORS.primaryBg
+                                                                    },
                                                                     children: "Email Us"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 157,
+                                                                    lineNumber: 189,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600",
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "info@cekolengineering.co.ke"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 158,
+                                                                    lineNumber: 190,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600",
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "projects@cekolengineering.co.ke"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 159,
+                                                                    lineNumber: 191,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 156,
+                                                            lineNumber: 188,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 182,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-start",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "bg-amber-100 p-3 rounded-full mr-4",
+                                                            className: "p-3 rounded-full mr-4",
+                                                            style: {
+                                                                background: COLORS.accent + "22"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                className: "w-6 h-6 text-amber-700",
+                                                                className: "w-6 h-6",
+                                                                style: {
+                                                                    color: COLORS.accent
+                                                                },
                                                                 fill: "none",
                                                                 stroke: "currentColor",
                                                                 viewBox: "0 0 24 24",
@@ -1102,7 +1197,7 @@ function ContactContent() {
                                                                         d: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/contact/page.tsx",
-                                                                        lineNumber: 166,
+                                                                        lineNumber: 198,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1112,73 +1207,81 @@ function ContactContent() {
                                                                         d: "M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/contact/page.tsx",
-                                                                        lineNumber: 167,
+                                                                        lineNumber: 199,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/contact/page.tsx",
-                                                                lineNumber: 165,
+                                                                lineNumber: 197,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 164,
+                                                            lineNumber: 196,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                    className: "text-lg font-semibold text-gray-900 mb-1",
+                                                                    className: "text-lg font-semibold mb-1",
+                                                                    style: {
+                                                                        color: COLORS.primaryBg
+                                                                    },
                                                                     children: "Visit Us"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 171,
+                                                                    lineNumber: 203,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600",
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: [
                                                                         "Summit House, 4th Floor, Moi Avenue",
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                                             fileName: "[project]/app/contact/page.tsx",
-                                                                            lineNumber: 173,
+                                                                            lineNumber: 205,
                                                                             columnNumber: 58
                                                                         }, this),
                                                                         "P.O Box 28460-00200, Nairobi, Kenya"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 172,
+                                                                    lineNumber: 204,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 170,
+                                                            lineNumber: 202,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 163,
+                                                    lineNumber: 195,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 168,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mt-12",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "text-xl font-semibold text-gray-900 mb-4",
+                                                    className: "text-xl font-semibold mb-4",
+                                                    style: {
+                                                        color: COLORS.primaryBg
+                                                    },
                                                     children: "Why Contact Us?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 181,
+                                                    lineNumber: 213,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1188,7 +1291,10 @@ function ContactContent() {
                                                             className: "flex items-start",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                    className: "w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0",
+                                                                    className: "w-5 h-5 mr-2 mt-0.5 flex-shrink-0",
+                                                                    style: {
+                                                                        color: COLORS.cta
+                                                                    },
                                                                     fill: "none",
                                                                     stroke: "currentColor",
                                                                     viewBox: "0 0 24 24",
@@ -1199,32 +1305,38 @@ function ContactContent() {
                                                                         d: "M5 13l4 4L19 7"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/contact/page.tsx",
-                                                                        lineNumber: 185,
+                                                                        lineNumber: 217,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 184,
+                                                                    lineNumber: 216,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "Free project consultation with our engineers"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 187,
+                                                                    lineNumber: 219,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 183,
+                                                            lineNumber: 215,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                             className: "flex items-start",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                    className: "w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0",
+                                                                    className: "w-5 h-5 mr-2 mt-0.5 flex-shrink-0",
+                                                                    style: {
+                                                                        color: COLORS.cta
+                                                                    },
                                                                     fill: "none",
                                                                     stroke: "currentColor",
                                                                     viewBox: "0 0 24 24",
@@ -1235,32 +1347,38 @@ function ContactContent() {
                                                                         d: "M5 13l4 4L19 7"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/contact/page.tsx",
-                                                                        lineNumber: 191,
+                                                                        lineNumber: 223,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 190,
+                                                                    lineNumber: 222,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "Customized solutions for your specific needs"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 193,
+                                                                    lineNumber: 225,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 189,
+                                                            lineNumber: 221,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                             className: "flex items-start",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                    className: "w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0",
+                                                                    className: "w-5 h-5 mr-2 mt-0.5 flex-shrink-0",
+                                                                    style: {
+                                                                        color: COLORS.cta
+                                                                    },
                                                                     fill: "none",
                                                                     stroke: "currentColor",
                                                                     viewBox: "0 0 24 24",
@@ -1271,43 +1389,46 @@ function ContactContent() {
                                                                         d: "M5 13l4 4L19 7"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/contact/page.tsx",
-                                                                        lineNumber: 197,
+                                                                        lineNumber: 229,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 196,
+                                                                    lineNumber: 228,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    style: {
+                                                                        color: COLORS.dark
+                                                                    },
                                                                     children: "Quick response within 24 business hours"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/contact/page.tsx",
-                                                                    lineNumber: 199,
+                                                                    lineNumber: 231,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 195,
+                                                            lineNumber: 227,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 214,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 180,
+                                            lineNumber: 212,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 158,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1326,61 +1447,69 @@ function ContactContent() {
                                     viewport: {
                                         once: true
                                     },
-                                    className: "bg-white rounded-2xl shadow-xl p-8",
+                                    className: "rounded-2xl shadow-xl p-8",
+                                    style: {
+                                        background: COLORS.white
+                                    },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mb-8",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-3xl font-bold text-gray-900 mb-2",
+                                                    className: "text-3xl font-bold mb-2",
+                                                    style: {
+                                                        color: COLORS.primaryBg
+                                                    },
                                                     children: "Send Us a Message"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 247,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600",
+                                                    style: {
+                                                        color: COLORS.dark
+                                                    },
                                                     children: "Fill out the form and our team will contact you shortly"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 215,
+                                                    lineNumber: 248,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$ContactForm$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             isQuote: false
                                         }, void 0, false, {
                                             fileName: "[project]/app/contact/page.tsx",
-                                            lineNumber: 218,
+                                            lineNumber: 251,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 206,
+                                    lineNumber: 238,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/contact/page.tsx",
-                            lineNumber: 125,
+                            lineNumber: 156,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/contact/page.tsx",
-                    lineNumber: 108,
+                    lineNumber: 139,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/contact/page.tsx",
-                lineNumber: 107,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1402,46 +1531,64 @@ function ContactContent() {
                         viewport: {
                             once: true
                         },
-                        className: "bg-white rounded-2xl shadow-xl overflow-hidden",
+                        className: "rounded-2xl shadow-xl overflow-hidden",
+                        style: {
+                            background: COLORS.white
+                        },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-6 border-b",
+                                style: {
+                                    borderColor: COLORS.border
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "text-2xl font-bold text-gray-900",
+                                        className: "text-2xl font-bold",
+                                        style: {
+                                            color: COLORS.primaryBg
+                                        },
                                         children: "Our Headquarters"
                                     }, void 0, false, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 235,
+                                        lineNumber: 269,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-600",
+                                        style: {
+                                            color: COLORS.dark
+                                        },
                                         children: "Visit us for a face-to-face consultation"
                                     }, void 0, false, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 236,
+                                        lineNumber: 270,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 234,
+                                lineNumber: 268,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "h-96 bg-gradient-to-r from-blue-900 to-emerald-800 relative",
+                                className: "h-96 relative",
+                                style: {
+                                    background: `linear-gradient(90deg, ${COLORS.primaryBg} 80%, ${COLORS.dark} 100%)`
+                                },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "absolute inset-0 flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-center text-white p-4",
+                                        className: "text-center p-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4",
+                                                className: "rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4",
+                                                style: {
+                                                    background: COLORS.white + "22",
+                                                    backdropFilter: 'blur(4px)'
+                                                },
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                     className: "w-8 h-8",
                                                     fill: "none",
-                                                    stroke: "currentColor",
+                                                    stroke: COLORS.cta,
                                                     viewBox: "0 0 24 24",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1451,7 +1598,7 @@ function ContactContent() {
                                                             d: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 245,
+                                                            lineNumber: 285,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1461,73 +1608,85 @@ function ContactContent() {
                                                             d: "M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/contact/page.tsx",
-                                                            lineNumber: 246,
+                                                            lineNumber: 286,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 244,
+                                                    lineNumber: 284,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/contact/page.tsx",
-                                                lineNumber: 243,
+                                                lineNumber: 282,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                 className: "text-xl font-semibold",
+                                                style: {
+                                                    color: COLORS.primaryBg
+                                                },
                                                 children: "Summit House, 4th Floor"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/contact/page.tsx",
-                                                lineNumber: 249,
+                                                lineNumber: 289,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                children: "Moi Avenue, Nairobi, Kenya"
+                                                style: {
+                                                    color: COLORS.white
+                                                },
+                                                children: `Moi Avenue, Nairobi, Kenya`
                                             }, void 0, false, {
                                                 fileName: "[project]/app/contact/page.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 290,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 281,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/contact/page.tsx",
-                                    lineNumber: 241,
+                                    lineNumber: 280,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 240,
+                                lineNumber: 274,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-6 text-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-600 mb-4",
+                                        className: "mb-4",
+                                        style: {
+                                            color: COLORS.dark
+                                        },
                                         children: "Get directions to our office"
                                     }, void 0, false, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 256,
+                                        lineNumber: 296,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: "https://maps.app.goo.gl/YSwbkwSHwWSG2q1p8",
                                         target: "_blank",
                                         rel: "noopener noreferrer",
-                                        className: "inline-flex items-center text-blue-900 font-medium hover:underline",
+                                        className: "inline-flex items-center font-medium hover:underline",
+                                        style: {
+                                            color: COLORS.primaryBg
+                                        },
                                         children: [
                                             "Open in Google Maps",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 className: "ml-2 w-4 h-4",
                                                 fill: "none",
-                                                stroke: "currentColor",
+                                                stroke: COLORS.cta,
                                                 viewBox: "0 0 24 24",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                     strokeLinecap: "round",
@@ -1536,46 +1695,46 @@ function ContactContent() {
                                                     d: "M14 5l7 7m0 0l-7 7m7-7H3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/contact/page.tsx",
-                                                    lineNumber: 267,
+                                                    lineNumber: 308,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/contact/page.tsx",
-                                                lineNumber: 266,
+                                                lineNumber: 307,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/contact/page.tsx",
-                                        lineNumber: 259,
+                                        lineNumber: 299,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/contact/page.tsx",
-                                lineNumber: 255,
+                                lineNumber: 295,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/contact/page.tsx",
-                        lineNumber: 227,
+                        lineNumber: 260,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/contact/page.tsx",
-                    lineNumber: 226,
+                    lineNumber: 259,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/contact/page.tsx",
-                lineNumber: 225,
+                lineNumber: 258,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/contact/page.tsx",
-        lineNumber: 23,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 }
@@ -1588,44 +1747,54 @@ _c = ContactContent;
 function ContactPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
         fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "min-h-screen flex items-center justify-center bg-gray-50",
+            className: "min-h-screen flex items-center justify-center",
+            style: {
+                background: COLORS.sectionBg
+            },
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mx-auto"
+                        className: "w-16 h-16 border-4 rounded-full animate-spin mx-auto",
+                        style: {
+                            borderColor: COLORS.primaryBg,
+                            borderTopColor: 'transparent'
+                        }
                     }, void 0, false, {
                         fileName: "[project]/app/contact/page.tsx",
-                        lineNumber: 284,
+                        lineNumber: 325,
                         columnNumber: 11
                     }, void 0),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "mt-4 text-gray-700",
+                        className: "mt-4",
+                        style: {
+                            color: COLORS.dark
+                        },
                         children: "Loading contact information..."
                     }, void 0, false, {
                         fileName: "[project]/app/contact/page.tsx",
-                        lineNumber: 285,
+                        lineNumber: 327,
                         columnNumber: 11
                     }, void 0)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/contact/page.tsx",
-                lineNumber: 283,
+                lineNumber: 324,
                 columnNumber: 9
             }, void 0)
         }, void 0, false, {
             fileName: "[project]/app/contact/page.tsx",
-            lineNumber: 282,
+            lineNumber: 323,
             columnNumber: 7
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ContactContent, {}, void 0, false, {
             fileName: "[project]/app/contact/page.tsx",
-            lineNumber: 289,
+            lineNumber: 331,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/contact/page.tsx",
-        lineNumber: 281,
+        lineNumber: 322,
         columnNumber: 5
     }, this);
 }

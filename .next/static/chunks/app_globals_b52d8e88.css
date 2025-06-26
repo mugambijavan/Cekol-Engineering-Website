@@ -1108,6 +1108,10 @@
     border-bottom-width: 1px;
   }
 
+  .border-\[\#0a2240\] {
+    border-color: #0a2240;
+  }
+
   .border-amber-500 {
     border-color: var(--color-amber-500);
   }
@@ -1194,6 +1198,10 @@
 
   .border-t-transparent {
     border-top-color: #0000;
+  }
+
+  .bg-\[\#0a2240\] {
+    background-color: #0a2240;
   }
 
   .bg-\[\#18181b\] {
@@ -2330,6 +2338,12 @@
   @media (hover: hover) {
     .group-hover\:bg-amber-200:is(:where(.group):hover *) {
       background-color: var(--color-amber-200);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:border-\[\#f59e0b\]:hover {
+      border-color: #f59e0b;
     }
   }
 

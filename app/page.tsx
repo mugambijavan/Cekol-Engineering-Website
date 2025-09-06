@@ -1,6 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { 
   FiCheckCircle, 
   FiClock, 
@@ -466,9 +467,11 @@ export default function EnhancedConstructionHomepage() {
               className="lg:w-1/2"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
-                <img 
+                <Image 
                   src="/images/Image11.png"
                   alt="CEKOL Engineering Team"
+                  width={800}
+                  height={600}
                   className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -507,7 +510,7 @@ export default function EnhancedConstructionHomepage() {
                 <h2 className="text-4xl md:text-5xl font-black mt-2 mb-6 leading-tight"
                   style={{ color: COLORS.primaryBg }}
                 >
-                  Building Africa's{' '}
+                  Building Africa&apos;s{' '}
                   <span 
                     className="relative"
                     style={{ 
@@ -528,8 +531,8 @@ export default function EnhancedConstructionHomepage() {
               </motion.div>
               
               <p className="text-xl mb-8 leading-relaxed" style={{ color: COLORS.dark }}>
-                Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited stands as Africa's premier 
-                civil engineering and construction company. We don't just build structures - we craft legacies 
+                Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited stands as Africa&apos;s premier 
+                civil engineering and construction company. We don&apos;t just build structures - we craft legacies 
                 that stand the test of time.
               </p>
               
@@ -568,125 +571,7 @@ export default function EnhancedConstructionHomepage() {
                       <h4 className="font-bold text-lg mb-1" style={{ color: COLORS.primaryBg }}>
                         {item.title}
                       </h4>
-                      <p className="text-gray-600">{item.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: `0 10px 30px ${COLORS.cta}40`
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 rounded-xl font-bold text-lg"
-                style={{
-                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.ctaHover})`,
-                  color: COLORS.white,
-                }}
-              >
-                <div className="flex items-center">
-                  <span>Discover Our Story</span>
-                  <FiArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
-                </div>
-              </motion.button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Services Section */}
-      <section className="relative py-24" style={{ background: COLORS.white }}>
-        {/* Enhanced background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div 
-            className="w-full h-full"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, ${COLORS.cta} 1px, transparent 0)`,
-              backgroundSize: '20px 20px'
-            }}
-          />
-        </div>
-        
-        <div className="container mx-auto px-6 relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <span className="text-amber-600 font-bold text-lg tracking-wider uppercase">Our Services</span>
-            <h2 className="text-4xl md:text-5xl font-black mt-4 mb-6"
-              style={{ color: COLORS.primaryBg }}
-            >
-              Complete{' '}
-              <span 
-                style={{ 
-                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}
-              >
-                Construction
-              </span>{' '}
-              Solutions
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto" style={{ color: COLORS.textLight }}>
-              From concept to completion, we deliver comprehensive engineering and construction 
-              services that exceed expectations
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
-          >
-            {SERVICES.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 50, rotateX: -15 },
-                  visible: { opacity: 1, y: 0, rotateX: 0 }
-                }}
-                whileHover={{ 
-                  y: -10,
-                  rotateX: 5,
-                  boxShadow: '0 25px 50px rgba(0,0,0,0.15)'
-                }}
-                className="group relative bg-white rounded-2xl p-8 border border-gray-100 overflow-hidden"
-              >
-                {/* Hover background effect */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
-                  style={{ background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})` }}
-                />
-                
-                <div className="relative z-10">
-                  {/* Enhanced icon */}
-                  <motion.div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                    style={{ 
-                      background: `linear-gradient(135deg, ${COLORS.cta}20, ${COLORS.accent}20)`,
-                      color: COLORS.cta
-                    }}
-                    whileHover={{ rotate: 5 }}
-                  >
-                    {service.icon}
-                  </motion.div>
-                  
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-600 transition-colors"
-                    style={{ color: COLORS.primaryBg }}
-                  >
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                      <p className="text-gray-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   
@@ -760,8 +645,8 @@ export default function EnhancedConstructionHomepage() {
               <span style={{ color: COLORS.cta }}>Detail</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We don't just meet industry standards - we set them. Here's what makes us 
-              Africa's premier construction partner
+              We don&apos;t just meet industry standards - we set them. Here&apos;s what makes us 
+              Africa&apos;s premier construction partner
             </p>
           </motion.div>
           
@@ -896,10 +781,12 @@ export default function EnhancedConstructionHomepage() {
                   transition={{ duration: 0.8 }}
                   className="absolute inset-0"
                 >
-                  <img 
+                  <Image 
                     src={projectImages[projectSlide]}
                     alt={`Featured Project ${projectSlide + 1}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
                   
@@ -1014,7 +901,7 @@ export default function EnhancedConstructionHomepage() {
               Stories
             </h2>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: COLORS.textLight }}>
-              Don't just take our word for it - hear from satisfied clients across Africa
+              Don&apos;t just take our word for it - hear from satisfied clients across Africa
             </p>
           </motion.div>
           
@@ -1077,7 +964,7 @@ export default function EnhancedConstructionHomepage() {
                   
                   {/* Quote */}
                   <div className="text-6xl opacity-20 mb-4" style={{ color: COLORS.cta }}>
-                    "
+                    &ldquo;
                   </div>
                   <p className="text-gray-700 italic mb-8 leading-relaxed text-lg">
                     {testimonial.quote}
@@ -1121,10 +1008,12 @@ export default function EnhancedConstructionHomepage() {
         {/* Enhanced background effects */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 opacity-20">
-            <img 
+            <Image 
               src="/images/Image11.png" 
               alt="Construction Background"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="100vw"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-slate-900/90" />
@@ -1143,7 +1032,7 @@ export default function EnhancedConstructionHomepage() {
               <span style={{ color: COLORS.cta }}>Vision?</span>
             </h2>
             <p className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Partner with Africa's leading construction company. Get your free consultation 
+              Partner with Africa&apos;s leading construction company. Get your free consultation 
               and project estimate today.
             </p>
             
@@ -1212,4 +1101,122 @@ export default function EnhancedConstructionHomepage() {
       </section>
     </div>
   );
-}
+}-gray-600">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <motion.button
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: `0 10px 30px ${COLORS.cta}40`
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-8 py-4 rounded-xl font-bold text-lg"
+                style={{
+                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.ctaHover})`,
+                  color: COLORS.white,
+                }}
+              >
+                <div className="flex items-center">
+                  <span>Discover Our Story</span>
+                  <FiArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Services Section */}
+      <section className="relative py-24" style={{ background: COLORS.white }}>
+        {/* Enhanced background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div 
+            className="w-full h-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, ${COLORS.cta} 1px, transparent 0)`,
+              backgroundSize: '20px 20px'
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="text-amber-600 font-bold text-lg tracking-wider uppercase">Our Services</span>
+            <h2 className="text-4xl md:text-5xl font-black mt-4 mb-6"
+              style={{ color: COLORS.primaryBg }}
+            >
+              Complete{' '}
+              <span 
+                style={{ 
+                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Construction
+              </span>{' '}
+              Solutions
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: COLORS.textLight }}>
+              From concept to completion, we deliver comprehensive engineering and construction 
+              services that exceed expectations
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.1 } }
+            }}
+          >
+            {SERVICES.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 50, rotateX: -15 },
+                  visible: { opacity: 1, y: 0, rotateX: 0 }
+                }}
+                whileHover={{ 
+                  y: -10,
+                  rotateX: 5,
+                  boxShadow: '0 25px 50px rgba(0,0,0,0.15)'
+                }}
+                className="group relative bg-white rounded-2xl p-8 border border-gray-100 overflow-hidden"
+              >
+                {/* Hover background effect */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                  style={{ background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})` }}
+                />
+                
+                <div className="relative z-10">
+                  {/* Enhanced icon */}
+                  <motion.div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${COLORS.cta}20, ${COLORS.accent}20)`,
+                      color: COLORS.cta
+                    }}
+                    whileHover={{ rotate: 5 }}
+                  >
+                    {service.icon}
+                  </motion.div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-600 transition-colors"
+                    style={{ color: COLORS.primaryBg }}
+                  >
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text

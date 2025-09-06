@@ -110,8 +110,8 @@ export default function EnhancedConstructionHomepage() {
     },
   ];
   
-  const projectsRef = useRef(null);
-  const aboutRef = useRef(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -714,13 +714,15 @@ export default function EnhancedConstructionHomepage() {
                       color: COLORS.cta,
                       background: 'transparent'
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = COLORS.cta;
-                      e.target.style.color = COLORS.white;
+                    onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                      const target = e.currentTarget as HTMLButtonElement;
+                      target.style.background = COLORS.cta;
+                      target.style.color = COLORS.white;
                     }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'transparent';
-                      e.target.style.color = COLORS.cta;
+                    onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                      const target = e.currentTarget as HTMLButtonElement;
+                      target.style.background = 'transparent';
+                      target.style.color = COLORS.cta;
                     }}
                   >
                     Learn More

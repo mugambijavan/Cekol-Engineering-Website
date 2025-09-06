@@ -1129,7 +1129,7 @@ export default function EnhancedConstructionHomepage() {
         </div>
       </section>
 
-      {/* Enhanced Services Section */}
+     {/* Enhanced Services Section */}
       <section className="relative py-24" style={{ background: COLORS.white }}>
         {/* Enhanced background pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -1219,4 +1219,532 @@ export default function EnhancedConstructionHomepage() {
                     {service.title}
                   </h3>
                   
-                  <p className="text
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  {/* Feature list */}
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center text-sm text-gray-500">
+                        <FiCheckCircle className="text-green-500 mr-2 flex-shrink-0" size={16} />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full py-3 px-4 rounded-xl font-semibold border-2 transition-all duration-300"
+                    style={{
+                      borderColor: COLORS.cta,
+                      color: COLORS.cta,
+                      background: 'transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = COLORS.cta;
+                      e.target.style.color = COLORS.white;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'transparent';
+                      e.target.style.color = COLORS.cta;
+                    }}
+                  >
+                    Learn More
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Enhanced Why Choose Us Section */}
+      <section className="relative py-24 text-white overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${COLORS.primaryBg} 0%, ${COLORS.primaryLight} 100%)` }}
+      >
+        {/* Enhanced background effects */}
+        <div className="absolute inset-0">
+          <motion.div 
+            className="absolute top-20 right-20 w-72 h-72 rounded-full opacity-20"
+            style={{ background: `radial-gradient(circle, ${COLORS.cta}, transparent 70%)` }}
+            animate={{ scale: [1, 1.2, 1], rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity }}
+          />
+          <motion.div 
+            className="absolute bottom-20 left-20 w-96 h-96 rounded-full opacity-10"
+            style={{ background: `radial-gradient(circle, ${COLORS.accent}, transparent 70%)` }}
+            animate={{ scale: [1.2, 1, 1.2], rotate: -360 }}
+            transition={{ duration: 25, repeat: Infinity }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="text-amber-400 font-bold text-lg tracking-wider uppercase">Why Choose Us</span>
+            <h2 className="text-4xl md:text-5xl font-black mt-4 mb-6">
+              Excellence in Every{' '}
+              <span style={{ color: COLORS.cta }}>Detail</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              We don't just meet industry standards - we set them. Here's what makes us 
+              Africa's premier construction partner
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <FiAward size={40} />,
+                title: "Certified Excellence",
+                description: "NCA5 certified with all necessary government registrations and industry compliance",
+                stat: "100%",
+                statLabel: "Certified"
+              },
+              {
+                icon: <FiDollarSign size={40} />,
+                title: "Cost Efficiency",
+                description: "Competitive pricing with transparent billing and no hidden costs",
+                stat: "30%",
+                statLabel: "Cost Savings"
+              },
+              {
+                icon: <FiClock size={40} />,
+                title: "On-Time Delivery",
+                description: "98% on-time completion rate with industry-leading project management",
+                stat: "98%",
+                statLabel: "On Time"
+              },
+              {
+                icon: <FiShield size={40} />,
+                title: "Safety First",
+                description: "DOSH certified with zero-incident safety record and comprehensive protocols",
+                stat: "0",
+                statLabel: "Incidents"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                }}
+                className="group relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700 overflow-hidden"
+              >
+                {/* Hover glow effect */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl"
+                  style={{ background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})` }}
+                />
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="mb-6 group-hover:scale-110 transition-transform duration-300"
+                    style={{ color: COLORS.cta }}
+                    whileHover={{ rotate: 10 }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  
+                  {/* Stat display */}
+                  <div className="mb-4">
+                    <div className="text-3xl font-black" style={{ color: COLORS.cta }}>
+                      {item.stat}
+                    </div>
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                      {item.statLabel}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-amber-400 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Featured Projects Section */}
+      <section ref={projectsRef} className="relative py-24 overflow-hidden" style={{ background: COLORS.sectionBg }}>
+        <motion.div 
+          className="absolute -right-48 -top-48 w-96 h-96 rounded-full opacity-30"
+          style={{
+            background: `linear-gradient(90deg, ${COLORS.cta}40, ${COLORS.accent}40)`,
+            rotate
+          }}
+        />
+
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="text-amber-600 font-bold text-lg tracking-wider uppercase">Our Portfolio</span>
+            <h2 className="text-4xl md:text-5xl font-black mt-4 mb-6"
+              style={{ color: COLORS.primaryBg }}
+            >
+              Featured{' '}
+              <span 
+                style={{ 
+                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Projects
+              </span>
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: COLORS.textLight }}>
+              Explore our portfolio of successfully completed projects across Africa
+            </p>
+          </motion.div>
+          
+          {/* Enhanced Project Slideshow */}
+          <div className="relative max-w-6xl mx-auto">
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={projectImages[projectSlide]}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute inset-0"
+                >
+                  <img 
+                    src={projectImages[projectSlide]}
+                    alt={`Featured Project ${projectSlide + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+                  
+                  {/* Project overlay info */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="max-w-2xl"
+                    >
+                      <div className="flex items-center mb-4">
+                        <div 
+                          className="px-4 py-2 rounded-full text-sm font-bold mr-4"
+                          style={{ background: COLORS.cta, color: COLORS.white }}
+                        >
+                          Project {projectSlide + 1} of {projectImages.length}
+                        </div>
+                        <div className="flex items-center text-white/80">
+                          <FiMapPin className="mr-1" size={16} />
+                          <span className="text-sm">East Africa</span>
+                        </div>
+                      </div>
+                      <h3 className="text-3xl font-bold text-white mb-2">
+                        Modern Infrastructure Development
+                      </h3>
+                      <p className="text-gray-200 text-lg mb-4">
+                        State-of-the-art construction showcasing our expertise in delivering 
+                        complex projects with precision and excellence.
+                      </p>
+                      <div className="flex items-center space-x-4">
+                        <div className="text-white/80 text-sm">
+                          <FiCheckCircle className="inline mr-1" />
+                          Completed on schedule
+                        </div>
+                        <div className="text-white/80 text-sm">
+                          <FiAward className="inline mr-1" />
+                          Quality certified
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Project navigation */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {projectImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setProjectSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === projectSlide 
+                      ? 'bg-amber-500 scale-125' 
+                      : 'bg-gray-400 hover:bg-gray-500'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: `0 10px 30px ${COLORS.cta}40`
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="group px-8 py-4 rounded-xl font-bold text-lg"
+              style={{
+                background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.ctaHover})`,
+                color: COLORS.white,
+              }}
+            >
+              <div className="flex items-center">
+                <span>View Complete Portfolio</span>
+                <FiArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+              </div>
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Enhanced Testimonials Section */}
+      <section className="relative py-24" style={{ background: COLORS.white }}>
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="text-amber-600 font-bold text-lg tracking-wider uppercase">Testimonials</span>
+            <h2 className="text-4xl md:text-5xl font-black mt-4 mb-6"
+              style={{ color: COLORS.primaryBg }}
+            >
+              Client{' '}
+              <span 
+                style={{ 
+                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Success
+              </span>{' '}
+              Stories
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: COLORS.textLight }}>
+              Don't just take our word for it - hear from satisfied clients across Africa
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "CEKOL Engineering transformed our vision into reality. Their market complex project exceeded all expectations with impeccable timing and budget management.",
+                author: "Bashir Mohamed Mohamud",
+                position: "Director, Infinity Development Ltd",
+                project: "Uhuru Business Park Market Complex",
+                rating: 5,
+                avatar: "B"
+              },
+              {
+                quote: "Outstanding professionalism in executing our electric fence project. Their technical expertise and attention to safety protocols make them our preferred contractor.",
+                author: "Dr. Erustus Kanga",
+                position: "Director General, Kenya Wildlife Service", 
+                project: "Kapkatunga-Kipyemit Electric Fence",
+                rating: 5,
+                avatar: "E"
+              },
+              {
+                quote: "Unmatched expertise in road construction. CEKOL has been our trusted partner across multiple infrastructure projects with consistent quality delivery.",
+                author: "Eng. George Omondi",
+                position: "Project Manager, Ministry of Transport",
+                project: "Various Road Construction Projects",
+                rating: 5,
+                avatar: "G"
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.03,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                }}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
+              >
+                {/* Hover background effect */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                  style={{ background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})` }}
+                />
+                
+                <div className="relative z-10">
+                  {/* Star rating */}
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <FiStar 
+                        key={i} 
+                        className="text-amber-500 fill-current" 
+                        size={20} 
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Quote */}
+                  <div className="text-6xl opacity-20 mb-4" style={{ color: COLORS.cta }}>
+                    "
+                  </div>
+                  <p className="text-gray-700 italic mb-8 leading-relaxed text-lg">
+                    {testimonial.quote}
+                  </p>
+                  
+                  {/* Author info */}
+                  <div className="border-t border-gray-200 pt-6">
+                    <div className="flex items-center">
+                      <div 
+                        className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4"
+                        style={{ background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.accent})` }}
+                      >
+                        {testimonial.avatar}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg" style={{ color: COLORS.primaryBg }}>
+                          {testimonial.author}
+                        </h4>
+                        <p className="text-gray-600 text-sm">
+                          {testimonial.position}
+                        </p>
+                        <p className="text-amber-600 text-sm font-semibold mt-1">
+                          {testimonial.project}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced CTA Section */}
+      <section className="relative py-24 text-white overflow-hidden"
+        style={{ 
+          background: `linear-gradient(135deg, ${COLORS.primaryBg} 0%, ${COLORS.primaryLight} 50%, ${COLORS.dark} 100%)` 
+        }}
+      >
+        {/* Enhanced background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 opacity-20">
+            <Image 
+              src="/images/Image11.png" 
+              alt="Construction Background"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-slate-900/90" />
+        </div>
+        
+        <div className="container mx-auto px-6 relative text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <span className="text-amber-400 font-bold text-lg tracking-wider uppercase">Get Started</span>
+            <h2 className="text-4xl md:text-6xl font-black mt-4 mb-8">
+              Ready to Build Your{' '}
+              <span style={{ color: COLORS.cta }}>Vision?</span>
+            </h2>
+            <p className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Partner with Africa's leading construction company. Get your free consultation 
+              and project estimate today.
+            </p>
+            
+            {/* Enhanced CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            >
+              <motion.button
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: `0 15px 40px ${COLORS.cta}50`
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative overflow-hidden px-10 py-5 rounded-xl font-bold text-xl"
+                style={{
+                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.ctaHover})`,
+                  color: COLORS.white,
+                }}
+              >
+                <div className="flex items-center">
+                  <FiPhone className="mr-3" size={24} />
+                  <span>Get Free Quote</span>
+                  <FiArrowRight className="ml-3 group-hover:translate-x-2 transition-transform" />
+                </div>
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ 
+                  scale: 1.05,
+                  backgroundColor: 'rgba(255,255,255,0.1)'
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-10 py-5 rounded-xl font-bold text-xl border-2 border-white/30 text-white backdrop-blur-sm"
+              >
+                <div className="flex items-center">
+                  <FiMail className="mr-3" size={24} />
+                  <span>View Portfolio</span>
+                </div>
+              </motion.button>
+            </motion.div>
+            
+            {/* Contact info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-300"
+            >
+              <div className="flex items-center">
+                <FiPhone className="mr-2" />
+                <span>+254 700 123 456</span>
+              </div>
+              <div className="flex items-center">
+                <FiMail className="mr-2" />
+                <span>info@cekolengineering.com</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}

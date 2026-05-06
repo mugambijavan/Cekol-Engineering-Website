@@ -1,7 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import { useEffect, useRef, useState, memo } from 'react';
-import type { ReactNode } from 'react';
 import Image from 'next/image';
 import {
   FiCheckCircle, FiClock, FiUsers, FiAward, FiMapPin,
@@ -26,7 +25,12 @@ const T = {
 };
 
 /* ─── Fade-in wrapper ────────────────────────────────── */
-const FadeIn = memo(({ children, delay = 0, direction = 'up', className = '' }: { children: ReactNode; delay?: number; direction?: 'up' | 'down' | 'left' | 'right'; className?: string }) => {
+const FadeIn = memo(({ children, delay = 0, direction = 'up', className = '' }: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
+  className?: string;
+}) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   const dirs = { up: [30, 0], down: [-30, 0], left: [0, 30], right: [0, -30] };
@@ -46,7 +50,7 @@ const FadeIn = memo(({ children, delay = 0, direction = 'up', className = '' }: 
 FadeIn.displayName = 'FadeIn';
 
 /* ─── Section Label ─────────────────────────────────── */
-const Label = ({ children }: { children: ReactNode }) => (
+const Label: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase"
     style={{ color: T.gold }}>
     <span className="w-6 h-px" style={{ background: T.gold }} />
@@ -55,7 +59,7 @@ const Label = ({ children }: { children: ReactNode }) => (
 );
 
 /* ─── Gold Heading ──────────────────────────────────── */
-const GoldWord = ({ children }: { children: ReactNode }) => (
+const GoldWord: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span style={{
     background: `linear-gradient(120deg, ${T.gold}, ${T.goldPl})`,
     WebkitBackgroundClip: 'text',
@@ -434,11 +438,11 @@ export default function ConstructionHomepage() {
                   fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 400, color: T.navy,
                   lineHeight: 1.15, margin: '1rem 0 1.5rem', letterSpacing: '-0.01em',
                 }}>
-                  Building Africa's <GoldWord>Future</GoldWord>,<br />One Structure at a Time
+                  Building Africa&apos;s <GoldWord>Future</GoldWord>,<br />One Structure at a Time
                 </h2>
                 <p style={{ color: T.slate, fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '2rem', fontWeight: 300 }}>
-                  Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited stands as East Africa's
-                  most trusted civil engineering and construction partner. We don't just erect structures —
+                  Founded in 2011 and incorporated in 2019, CEKOL Engineering Limited stands as East Africa&apos;s
+                  most trusted civil engineering and construction partner. We don&apos;t just erect structures —
                   we craft legacies engineered to outlast generations.
                 </p>
 
@@ -548,7 +552,7 @@ export default function ConstructionHomepage() {
                 Excellence in Every <span style={{ color: T.gold }}>Detail</span>
               </h2>
               <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '1.05rem', maxWidth: 520, margin: '0 auto', fontWeight: 300, lineHeight: 1.7 }}>
-                We don't meet industry standards — we define them.
+                We don&apos;t meet industry standards — we define them.
               </p>
             </div>
           </FadeIn>
@@ -737,7 +741,7 @@ export default function ConstructionHomepage() {
               Ready to Build Your <span style={{ color: T.gold }}>Vision?</span>
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
-              Partner with East Africa's leading construction company. Get your free consultation and project estimate today.
+              Partner with East Africa&apos;s leading construction company. Get your free consultation and project estimate today.
             </p>
 
             {/* CTA Buttons */}
@@ -797,8 +801,8 @@ export default function ConstructionHomepage() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'flex-end' }}>
               {['Services', 'Projects', 'About', 'Testimonials', 'Contact'].map(l => (
                 <a key={l} href={`#${l.toLowerCase()}`} style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.825rem', textDecoration: 'none', transition: 'color 0.2s' }}
-                  onMouseEnter={e => ((e.target as HTMLElement).style.color = T.gold)}
-                  onMouseLeave={e => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.4)')}
+                  onMouseEnter={e => e.currentTarget.style.color = T.gold}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}
                 >
                   {l}
                 </a>
